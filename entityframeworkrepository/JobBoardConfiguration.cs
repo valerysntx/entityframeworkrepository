@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoard
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobBoardConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoard>
+    public partial class JobBoardConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoard>
     {
         public JobBoardConfiguration()
             : this("dbo")
@@ -31,7 +32,9 @@ namespace entityframeworkrepository
             Property(x => x.JobBoardName).IsUnicode(false);
             Property(x => x.JobBoardLogo).IsUnicode(false);
             Property(x => x.JobBoardDescription).IsOptional().IsUnicode(false);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

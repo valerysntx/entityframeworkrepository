@@ -15,6 +15,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // The table 'Evaluation' is not usable by entity framework because it
@@ -22,7 +23,7 @@ namespace entityframeworkrepository
     // Evaluation
     [NotMapped]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Evaluation
+    public partial class Evaluation: BaseEntity
     {
         [Column(@"EvaluationID", Order = 1, TypeName = "int")]
         [Display(Name = "Evaluation ID")]
@@ -67,6 +68,13 @@ namespace entityframeworkrepository
         [Column(@"DateUpdated", Order = 10, TypeName = "datetime")]
         [Display(Name = "Date updated")]
         public System.DateTime? DateUpdated { get; set; } // DateUpdated
+
+        public Evaluation()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

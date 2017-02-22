@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Pipeline
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class PipelineConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Pipeline>
+    public partial class PipelineConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Pipeline>
     {
         public PipelineConfiguration()
             : this("dbo")
@@ -30,7 +31,9 @@ namespace entityframeworkrepository
         {
             Property(x => x.UpdatedBy).IsOptional();
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

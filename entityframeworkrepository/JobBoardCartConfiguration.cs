@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoardCart
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobBoardCartConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoardCart>
+    public partial class JobBoardCartConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoardCart>
     {
         public JobBoardCartConfiguration()
             : this("dbo")
@@ -28,7 +29,9 @@ namespace entityframeworkrepository
 
         public JobBoardCartConfiguration(string schema)
         {
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

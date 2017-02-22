@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // InterviewKitAnswer
     [Table("InterviewKitAnswer", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class InterviewKitAnswer
+    public partial class InterviewKitAnswer: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"InterviewKitAnswerID", Order = 1, TypeName = "int")]
@@ -48,6 +49,13 @@ namespace entityframeworkrepository
         [Required]
         [Display(Name = "Date added")]
         public System.DateTime DateAdded { get; set; } // DateAdded
+
+        public InterviewKitAnswer()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

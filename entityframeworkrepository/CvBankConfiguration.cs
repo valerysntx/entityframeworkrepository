@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // CVBank
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class CvBankConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CvBank>
+    public partial class CvBankConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CvBank>
     {
         public CvBankConfiguration()
             : this("dbo")
@@ -31,7 +32,9 @@ namespace entityframeworkrepository
             Property(x => x.CvBankText).IsOptional().IsUnicode(false);
             Property(x => x.CvBankUniqueId).IsOptional().IsUnicode(false);
             Property(x => x.CvBankFilename).IsOptional().IsUnicode(false);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

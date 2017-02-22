@@ -22,8 +22,8 @@
     TargetFrameworkVersion = "4.51"; // Please set this to your .NET framework version, 4.0, 4.5, 4.51, etc.
     ConfigurationClassName = "Configuration"; // Configuration, Mapping, Map, etc. This is appended to the Poco class name to configure the mappings.
     ConfigFilenameSearchOrder = new[] { "app.config", "web.config", "app.config.transform", "web.config.transform" }; // Add more here if required. The config files are searched for in the local project first, then the whole solution second.
-    MakeClassesPartial = false;
-    MakeDbContextInterfacePartial = false;
+    MakeClassesPartial = true;
+    MakeDbContextInterfacePartial = true;
     GenerateSeparateFiles = true;
     UseMappingTables = true; // If true, mapping will be used and no mapping tables will be generated. If false, all tables will be generated.
     UsePascalCase = true;    // This will rename the generated C# tables & properties to use PascalCase. If false table & property names will be left alone.
@@ -42,7 +42,7 @@
     IncludeQueryTraceOn9481Flag = true; // If SqlServer 2014 appears frozen / take a long time when this file is saved, try setting this to true (you will also need elevated privileges).
     IncludeCodeGeneratedAttribute = true; // If true, will include the GeneratedCode attribute, false to remove it.
     UsePrivateSetterForComputedColumns = true; // If the columns is computed, use a private setter.
-    AdditionalNamespaces = new[] { "System.ComponentModel.DataAnnotations" };  // To include extra namespaces, include them here. i.e. "Microsoft.AspNet.Identity.EntityFramework"
+    AdditionalNamespaces = new[] { "System.ComponentModel.DataAnnotations", "entityframeworkrepository.core" };  // To include extra namespaces, include them here. i.e. "Microsoft.AspNet.Identity.EntityFramework"
     AdditionalContextInterfaceItems = new[] // To include extra db context interface items, include them here. Also set MakeClassesPartial=true, and implement the partial DbContext class functions.
     {
         ""
@@ -298,7 +298,7 @@
     {
         //if (t.ClassName == "User")
         //    return ": IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>";
-        return "";
+        return ": BaseEntity";
     };
 
     // Writes any boilerplate stuff

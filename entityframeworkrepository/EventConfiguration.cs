@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Event
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class EventConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Event>
+    public partial class EventConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Event>
     {
         public EventConfiguration()
             : this("dbo")
@@ -38,7 +39,9 @@ namespace entityframeworkrepository
             Property(x => x.CreatedBy).IsOptional();
             Property(x => x.DateAdded).IsOptional();
             Property(x => x.DateUpdated).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

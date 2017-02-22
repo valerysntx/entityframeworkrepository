@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // CVBankOwner
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class CvBankOwnerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CvBankOwner>
+    public partial class CvBankOwnerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CvBankOwner>
     {
         public CvBankOwnerConfiguration()
             : this("dbo")
@@ -30,7 +31,9 @@ namespace entityframeworkrepository
         {
             Property(x => x.IsDeleted).IsOptional();
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

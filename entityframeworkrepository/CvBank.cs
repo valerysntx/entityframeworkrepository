@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // CVBank
     [Table("CVBank", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class CvBank
+    public partial class CvBank: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"CVBankID", Order = 1, TypeName = "int")]
@@ -72,7 +73,10 @@ namespace entityframeworkrepository
         public CvBank()
         {
             CvBankOwners = new System.Collections.Generic.List<CvBankOwner>();
+            InitializePartial();
         }
+
+        partial void InitializePartial();
     }
 
 }

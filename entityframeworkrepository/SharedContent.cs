@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // SharedContent
     [Table("SharedContent", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class SharedContent
+    public partial class SharedContent: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"SharedContentID", Order = 1, TypeName = "int")]
@@ -87,6 +88,13 @@ namespace entityframeworkrepository
         [StringLength(30)]
         [Display(Name = "Share content with email")]
         public string ShareContentWithEmail { get; set; } // ShareContentWithEmail (length: 30)
+
+        public SharedContent()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

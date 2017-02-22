@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Company
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class CompanyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Company>
+    public partial class CompanyConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Company>
     {
         public CompanyConfiguration()
             : this("dbo")
@@ -42,7 +43,9 @@ namespace entityframeworkrepository
             Property(x => x.PostCode).IsOptional().IsUnicode(false);
             Property(x => x.IsDeleted).IsOptional();
             Property(x => x.CountryId).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

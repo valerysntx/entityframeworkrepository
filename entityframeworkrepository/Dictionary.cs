@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Dictionary
     [Table("Dictionary", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Dictionary
+    public partial class Dictionary: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"DictionaryTypeID", Order = 1, TypeName = "int")]
@@ -104,7 +105,10 @@ namespace entityframeworkrepository
             DepartmentId = 0;
             CompanyId = 0;
             People = new System.Collections.Generic.List<Person>();
+            InitializePartial();
         }
+
+        partial void InitializePartial();
     }
 
 }

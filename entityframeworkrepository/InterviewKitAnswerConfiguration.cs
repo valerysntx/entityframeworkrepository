@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // InterviewKitAnswer
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class InterviewKitAnswerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<InterviewKitAnswer>
+    public partial class InterviewKitAnswerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<InterviewKitAnswer>
     {
         public InterviewKitAnswerConfiguration()
             : this("dbo")
@@ -29,7 +30,9 @@ namespace entityframeworkrepository
         public InterviewKitAnswerConfiguration(string schema)
         {
             Property(x => x.JobId).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

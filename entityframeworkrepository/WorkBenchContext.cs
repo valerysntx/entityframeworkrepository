@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     using System.Linq;
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class WorkBenchContext : System.Data.Entity.DbContext, IWorkBenchContext
+    public partial class WorkBenchContext : System.Data.Entity.DbContext, IWorkBenchContext
     {
         public System.Data.Entity.DbSet<Activity> Activities { get; set; } // Activity
         public System.Data.Entity.DbSet<Company> Companies { get; set; } // Company
@@ -53,31 +54,37 @@ namespace entityframeworkrepository
         static WorkBenchContext()
         {
             System.Data.Entity.Database.SetInitializer<WorkBenchContext>(null);
+            WorkBenchContextStaticPartial(); // Create the following method in your partial class: private static void WorkBenchContextStaticPartial() { }
         }
 
         public WorkBenchContext()
             : base("Name=WorkBenchContext")
         {
+            InitializePartial();
         }
 
         public WorkBenchContext(string connectionString)
             : base(connectionString)
         {
+            InitializePartial();
         }
 
         public WorkBenchContext(string connectionString, System.Data.Entity.Infrastructure.DbCompiledModel model)
             : base(connectionString, model)
         {
+            InitializePartial();
         }
 
         public WorkBenchContext(System.Data.Common.DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection)
         {
+            InitializePartial();
         }
 
         public WorkBenchContext(System.Data.Common.DbConnection existingConnection, System.Data.Entity.Infrastructure.DbCompiledModel model, bool contextOwnsConnection)
             : base(existingConnection, model, contextOwnsConnection)
         {
+            InitializePartial();
         }
 
         protected override void Dispose(bool disposing)
@@ -125,6 +132,8 @@ namespace entityframeworkrepository
             modelBuilder.Configurations.Add(new TagConfiguration());
             modelBuilder.Configurations.Add(new TemplateConfiguration());
             modelBuilder.Configurations.Add(new TokenManagerConfiguration());
+
+            OnModelCreatingPartial(modelBuilder);
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
@@ -158,6 +167,9 @@ namespace entityframeworkrepository
             modelBuilder.Configurations.Add(new TokenManagerConfiguration(schema));
             return modelBuilder;
         }
+
+        partial void InitializePartial();
+        partial void OnModelCreatingPartial(System.Data.Entity.DbModelBuilder modelBuilder);
     }
 }
 // </auto-generated>

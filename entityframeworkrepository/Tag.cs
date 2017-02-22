@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Tag
     [Table("Tag", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Tag
+    public partial class Tag: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"TagID", Order = 1, TypeName = "int")]
@@ -61,6 +62,13 @@ namespace entityframeworkrepository
         [Required]
         [Display(Name = "Date updated")]
         public System.DateTime DateUpdated { get; set; } // DateUpdated
+
+        public Tag()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

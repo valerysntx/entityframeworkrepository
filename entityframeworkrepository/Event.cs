@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Event
     [Table("Event", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Event
+    public partial class Event: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"EventID", Order = 1, TypeName = "int")]
@@ -71,6 +72,13 @@ namespace entityframeworkrepository
         [Column(@"DateUpdated", Order = 11, TypeName = "datetime")]
         [Display(Name = "Date updated")]
         public System.DateTime? DateUpdated { get; set; } // DateUpdated
+
+        public Event()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

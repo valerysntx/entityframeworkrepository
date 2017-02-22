@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Person
     [Table("Person", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Person
+    public partial class Person: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"PersonID", Order = 1, TypeName = "int")]
@@ -156,7 +157,10 @@ namespace entityframeworkrepository
             Jobs = new System.Collections.Generic.List<Job>();
             Templates_CreatedBy = new System.Collections.Generic.List<Template>();
             Templates_UpdatedBy = new System.Collections.Generic.List<Template>();
+            InitializePartial();
         }
+
+        partial void InitializePartial();
     }
 
 }

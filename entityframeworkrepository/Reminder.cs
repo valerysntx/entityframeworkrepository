@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Reminder
     [Table("Reminder", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Reminder
+    public partial class Reminder: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ReminderID", Order = 1, TypeName = "int")]
@@ -59,6 +60,13 @@ namespace entityframeworkrepository
         [Required]
         [Display(Name = "Date updated")]
         public System.DateTime DateUpdated { get; set; } // DateUpdated
+
+        public Reminder()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

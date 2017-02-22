@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobForm
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobFormConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobForm>
+    public partial class JobFormConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobForm>
     {
         public JobFormConfiguration()
             : this("dbo")
@@ -30,7 +31,9 @@ namespace entityframeworkrepository
         {
             Property(x => x.QuestionAnswerXml).IsOptional().IsUnicode(false);
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

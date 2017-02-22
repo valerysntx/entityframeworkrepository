@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // PricePackage
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class PricePackageConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PricePackage>
+    public partial class PricePackageConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PricePackage>
     {
         public PricePackageConfiguration()
             : this("dbo")
@@ -33,7 +34,9 @@ namespace entityframeworkrepository
             Property(x => x.Description).IsOptional().IsUnicode(false);
             Property(x => x.Description2).IsOptional().IsUnicode(false);
             Property(x => x.Discount).IsOptional().HasPrecision(19,4);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

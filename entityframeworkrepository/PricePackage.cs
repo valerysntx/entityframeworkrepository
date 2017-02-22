@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // PricePackage
     [Table("PricePackage", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class PricePackage
+    public partial class PricePackage: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"PricePackageID", Order = 1, TypeName = "int")]
@@ -91,7 +92,10 @@ namespace entityframeworkrepository
         public PricePackage()
         {
             IsDelete = false;
+            InitializePartial();
         }
+
+        partial void InitializePartial();
     }
 
 }

@@ -234,6 +234,7 @@
     <Compile Include="WorkBenchContext.cs">
       <DependentUpon>WorkBench.tt</DependentUpon>
     </Compile>
+    <Compile Include="WorkBenchContextMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WorkBench.tt">
@@ -251,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\entityframeworkrepository.core\entityframeworkrepository.core.csproj">
+      <Project>{396ecc34-dbaf-44b4-b625-1b7fbc008aca}</Project>
+      <Name>entityframeworkrepository.core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

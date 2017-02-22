@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultQA
     [Table("JobFormResultQA", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobFormResultQa
+    public partial class JobFormResultQa: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"JobFormResultQAID", Order = 1, TypeName = "int")]
@@ -83,6 +84,13 @@ namespace entityframeworkrepository
         [Column(@"IsAnswer", Order = 12, TypeName = "bit")]
         [Display(Name = "Is answer")]
         public bool? IsAnswer { get; set; } // IsAnswer
+
+        public JobFormResultQa()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

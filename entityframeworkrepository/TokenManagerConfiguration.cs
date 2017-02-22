@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // TokenManager
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class TokenManagerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TokenManager>
+    public partial class TokenManagerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TokenManager>
     {
         public TokenManagerConfiguration()
             : this("dbo")
@@ -32,7 +33,9 @@ namespace entityframeworkrepository
             Property(x => x.Email).IsOptional().IsUnicode(false);
             Property(x => x.IpAddress).IsOptional().IsUnicode(false);
             Property(x => x.DateAdded).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

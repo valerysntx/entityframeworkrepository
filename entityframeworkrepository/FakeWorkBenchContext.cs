@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     using System.Linq;
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class FakeWorkBenchContext : IWorkBenchContext
+    public partial class FakeWorkBenchContext : IWorkBenchContext
     {
         public System.Data.Entity.DbSet<Activity> Activities { get; set; }
         public System.Data.Entity.DbSet<Company> Companies { get; set; }
@@ -79,6 +80,8 @@ namespace entityframeworkrepository
             Tags = new FakeDbSet<Tag>("TagId");
             Templates = new FakeDbSet<Template>("TemplateId");
             TokenManagers = new FakeDbSet<TokenManager>("TokenId");
+
+            InitializePartial();
         }
 
         public int SaveChangesCount { get; private set; }
@@ -99,6 +102,8 @@ namespace entityframeworkrepository
             ++SaveChangesCount;
             return System.Threading.Tasks.Task<int>.Factory.StartNew(() => 1, cancellationToken);
         }
+
+        partial void InitializePartial();
 
         protected virtual void Dispose(bool disposing)
         {

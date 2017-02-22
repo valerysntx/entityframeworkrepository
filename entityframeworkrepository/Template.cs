@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Template
     [Table("Template", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Template
+    public partial class Template: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"TemplateID", Order = 1, TypeName = "int")]
@@ -85,6 +86,13 @@ namespace entityframeworkrepository
         // Foreign keys
         [ForeignKey("CreatedBy")] public virtual Person Person_CreatedBy { get; set; } // FK_Template_Person
         [ForeignKey("UpdatedBy")] public virtual Person Person_UpdatedBy { get; set; } // FK_Template_Person2
+
+        public Template()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

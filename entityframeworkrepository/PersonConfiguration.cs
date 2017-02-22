@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Person
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class PersonConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Person>
+    public partial class PersonConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Person>
     {
         public PersonConfiguration()
             : this("dbo")
@@ -49,7 +50,9 @@ namespace entityframeworkrepository
             Property(x => x.DateAdded).IsOptional();
             Property(x => x.DateUpdated).IsOptional();
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

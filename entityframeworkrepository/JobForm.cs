@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobForm
     [Table("JobForm", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobForm
+    public partial class JobForm: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"JobFormID", Order = 1, TypeName = "int")]
@@ -126,6 +127,13 @@ namespace entityframeworkrepository
 
         // Foreign keys
         [ForeignKey("JobId")] public virtual Job Job { get; set; } // FK_JobForm_Job
+
+        public JobForm()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

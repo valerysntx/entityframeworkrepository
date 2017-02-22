@@ -1,7 +1,6 @@
 namespace entityframeworkrepository.core
 {
-    public interface IEntity<T>
+    public interface IEntity
     {
-        T Id { get; set; }
     }
 }
