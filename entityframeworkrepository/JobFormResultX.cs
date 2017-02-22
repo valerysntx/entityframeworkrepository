@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultX
     [Table("JobFormResultX", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobFormResultX
+    public partial class JobFormResultX: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"JobFormResultID", Order = 1, TypeName = "int")]
@@ -198,6 +199,13 @@ namespace entityframeworkrepository
         [Key]
         [Display(Name = "Date updated")]
         public System.DateTime DateUpdated { get; set; } // DateUpdated (Primary key)
+
+        public JobFormResultX()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

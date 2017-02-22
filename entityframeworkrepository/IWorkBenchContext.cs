@@ -15,9 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
-    public interface IWorkBenchContext : System.IDisposable
+    public partial interface IWorkBenchContext : System.IDisposable
     {
         System.Data.Entity.DbSet<Activity> Activities { get; set; } // Activity
         System.Data.Entity.DbSet<Company> Companies { get; set; } // Company

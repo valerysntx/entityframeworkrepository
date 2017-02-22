@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Department
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class DepartmentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Department>
+    public partial class DepartmentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Department>
     {
         public DepartmentConfiguration()
             : this("dbo")
@@ -29,7 +30,9 @@ namespace entityframeworkrepository
         public DepartmentConfiguration(string schema)
         {
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

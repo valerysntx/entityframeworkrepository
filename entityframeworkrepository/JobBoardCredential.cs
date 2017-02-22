@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoardCredential
     [Table("JobBoardCredential", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobBoardCredential
+    public partial class JobBoardCredential: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"JobBoardCredentialID", Order = 1, TypeName = "int")]
@@ -84,6 +85,13 @@ namespace entityframeworkrepository
 
         // Foreign keys
         [ForeignKey("JobBoardId")] public virtual JobBoard JobBoard { get; set; } // FK_JobBoardCredential_JobBoard
+
+        public JobBoardCredential()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

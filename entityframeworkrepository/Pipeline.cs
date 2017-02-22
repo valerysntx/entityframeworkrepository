@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Pipeline
     [Table("Pipeline", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Pipeline
+    public partial class Pipeline: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"PipelineID", Order = 1, TypeName = "int")]
@@ -71,6 +72,13 @@ namespace entityframeworkrepository
 
         // Foreign keys
         [ForeignKey("StageId")] public virtual Stage Stage { get; set; } // FK_Pipeline_Stage
+
+        public Pipeline()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

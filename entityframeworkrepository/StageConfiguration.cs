@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Stage
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class StageConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Stage>
+    public partial class StageConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Stage>
     {
         public StageConfiguration()
             : this("dbo")
@@ -32,7 +33,9 @@ namespace entityframeworkrepository
             Property(x => x.JobFormResultId).IsOptional();
             Property(x => x.NewsStageName).IsOptional().IsUnicode(false);
             Property(x => x.DepartmentId).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

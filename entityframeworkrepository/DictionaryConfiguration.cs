@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Dictionary
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class DictionaryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Dictionary>
+    public partial class DictionaryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Dictionary>
     {
         public DictionaryConfiguration()
             : this("dbo")
@@ -41,7 +42,9 @@ namespace entityframeworkrepository
             Property(x => x.CreatedBy).IsOptional();
             Property(x => x.DateAdded).IsOptional();
             Property(x => x.DateUpdated).IsOptional();
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

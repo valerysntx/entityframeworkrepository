@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Reminder
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class ReminderConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Reminder>
+    public partial class ReminderConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Reminder>
     {
         public ReminderConfiguration()
             : this("dbo")
@@ -28,7 +29,9 @@ namespace entityframeworkrepository
 
         public ReminderConfiguration(string schema)
         {
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

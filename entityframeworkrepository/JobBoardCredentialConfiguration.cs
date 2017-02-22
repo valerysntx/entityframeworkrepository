@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoardCredential
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class JobBoardCredentialConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoardCredential>
+    public partial class JobBoardCredentialConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobBoardCredential>
     {
         public JobBoardCredentialConfiguration()
             : this("dbo")
@@ -32,7 +33,9 @@ namespace entityframeworkrepository
             Property(x => x.JobBoardPassword).IsUnicode(false);
             Property(x => x.JobBoardUrl).IsUnicode(false);
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

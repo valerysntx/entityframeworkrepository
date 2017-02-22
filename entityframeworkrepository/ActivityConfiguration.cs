@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Activity
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class ActivityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Activity>
+    public partial class ActivityConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Activity>
     {
         public ActivityConfiguration()
             : this("dbo")
@@ -30,7 +31,9 @@ namespace entityframeworkrepository
         {
             Property(x => x.ActivityAction).IsUnicode(false);
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

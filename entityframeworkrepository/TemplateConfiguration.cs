@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Template
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class TemplateConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Template>
+    public partial class TemplateConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Template>
     {
         public TemplateConfiguration()
             : this("dbo")
@@ -36,7 +37,9 @@ namespace entityframeworkrepository
             Property(x => x.CompanyId).IsOptional();
             Property(x => x.DepartmentId).IsOptional();
 
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }

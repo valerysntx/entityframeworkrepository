@@ -15,12 +15,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // Activity
     [Table("Activity", Schema = "dbo")]
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class Activity
+    public partial class Activity: BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ActivityID", Order = 1, TypeName = "int")]
@@ -70,6 +71,13 @@ namespace entityframeworkrepository
         // Foreign keys
         [ForeignKey("CreatedBy")] public virtual Person Person_CreatedBy { get; set; } // FK_Activity_Person
         [ForeignKey("UpdatedBy")] public virtual Person Person_UpdatedBy { get; set; } // FK_Activity_Person1
+
+        public Activity()
+        {
+            InitializePartial();
+        }
+
+        partial void InitializePartial();
     }
 
 }

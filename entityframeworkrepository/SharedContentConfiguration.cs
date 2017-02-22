@@ -15,11 +15,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
+    using entityframeworkrepository.core;
     using System.ComponentModel.DataAnnotations;
 
     // SharedContent
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public class SharedContentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SharedContent>
+    public partial class SharedContentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SharedContent>
     {
         public SharedContentConfiguration()
             : this("dbo")
@@ -36,7 +37,9 @@ namespace entityframeworkrepository
             Property(x => x.ShareContentLink).IsOptional().IsUnicode(false);
             Property(x => x.ShareContentWith).IsOptional();
             Property(x => x.ShareContentWithEmail).IsOptional().IsUnicode(false);
+            InitializePartial();
         }
+        partial void InitializePartial();
     }
 
 }
