@@ -15,7 +15,7 @@ namespace entityframeworkrepository.tests
         [Test]
         public void ShouldCreateFakeDbSet_Of_TypeParamT ()
         {
-            Assert.IsNotNull(new FakeDbSet<BaseEntity>());
+            Assert.That(new FakeDbSet<BaseEntity>(), Is.Not.Null);
         }
 
     }
