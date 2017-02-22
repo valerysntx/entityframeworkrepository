@@ -42,16 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditableEntity.cs" />
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="Cache.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="IAuditableEntity.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="IEntity.cs" />
-    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="entity\AuditableEntity.cs" />
+    <Compile Include="entity\BaseEntity.cs" />
+    <Compile Include="cache\Cache.cs" />
+    <Compile Include="entity\Entity.cs" />
+    <Compile Include="entity\IAuditableEntity.cs" />
+    <Compile Include="cache\ICache.cs" />
+    <Compile Include="entity\IEntity.cs" />
+    <Compile Include="repository\AbstractCachedGenericRepository.cs" />
+    <Compile Include="repository\IGenericDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

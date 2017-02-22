@@ -12,9 +12,18 @@ using System.Collections.Generic;
 namespace Cache
     {
         //Implementation of ICache
-        public class Cache<TKey, TValue> : ICache<TKey, TValue> where TKey : class
+        /// <summary>
+        ///
+        ///
+        ///
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        public class Cache<TKey, TValue> :
+            ICache<TKey, TValue> where TKey : class
         {
             private readonly object _syncLock = new object();
+
             private IDictionary<TKey, TValue> _internalCache = new Dictionary<TKey, TValue>();
 
             public TValue this[TKey key]
@@ -86,10 +95,11 @@ namespace Cache
 
             public void Remove(TKey key)
             {
-                lock (_syncLock)
-                {
-                    _internalCache.Remove(key);
-                }
+                if (_syncLock != null)
+                    lock (_syncLock)
+                    {
+                        _internalCache.Remove(key);
+                    }
             }
         }
     }

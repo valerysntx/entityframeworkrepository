@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace entityframeworkrepository.core.Cache
+namespace entityframeworkrepository.core
 {
     /// <summary>
     /// Generic cache. Should be wrapped in a singelton.
