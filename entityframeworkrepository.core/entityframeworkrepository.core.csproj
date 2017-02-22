@@ -44,8 +44,10 @@
   <ItemGroup>
     <Compile Include="AuditableEntity.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Cache.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="IAuditableEntity.cs" />
+    <Compile Include="ICache.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IGenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

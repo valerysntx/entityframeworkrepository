@@ -13,4 +13,6 @@ namespace entityframeworkrepository.core
         void Edit(T entity);
         void Save();
     }
+
+ 
 }
