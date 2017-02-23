@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace entityframeworkrepository.core
+namespace entityframeworkrepository.core.entity
 {
     public interface IAuditableEntity
     {

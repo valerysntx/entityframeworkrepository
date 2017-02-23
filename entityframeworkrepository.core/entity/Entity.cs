@@ -1,4 +1,4 @@
-﻿namespace entityframeworkrepository.core
+﻿namespace entityframeworkrepository.core.entity
 {
     public abstract class Entity<T> : BaseEntity, IEntity
     {

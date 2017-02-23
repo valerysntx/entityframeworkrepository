@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace entityframeworkrepository.core
+namespace entityframeworkrepository.core.entity
 {
     public abstract class AuditableEntity<T> : Entity<T>, IAuditableEntity
     {

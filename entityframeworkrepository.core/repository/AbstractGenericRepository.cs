@@ -1,20 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using entityframeworkrepository.core.cache;
+using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository.core.repository
 {
     /// <summary>
-    /// Abstract class of CachedGenericRepository
+    /// with cache factory
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <typeparam name="TCache"></typeparam>
-    // ReSharper disable once UnusedMember.Global
-    public abstract class AbstractCachedGenericRepository<T, TCache> :
-        IGenericDataRepository<T>
-        where TCache : ICache<int, T>, new ()
-        where T : BaseEntity
+    public abstract class AbstractGenericRepository<T>: IGenericDataRepository<T> where T : BaseEntity
     {
+        public Lazy<ICache<string, T>> Cache { get; private set; }
+
+        protected void AbstractCachedGenericRepositorty(Func<ICache<string,T>> valueFactory)
+        {
+            if (valueFactory == null) throw new ArgumentNullException(nameof(valueFactory));
+            Cache = new Lazy<ICache<string,T>>( valueFactory );
+        }
+
+
         public abstract IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
         public abstract IList<T> GetList(Func<T, bool> @where, params Expression<Func<T, object>>[] navigationProperties);
         public abstract T GetSingle(Func<T, bool> @where, params Expression<Func<T, object>>[] navigationProperties);
@@ -23,5 +29,4 @@ namespace entityframeworkrepository.core.repository
         public abstract T Remove(params T[] items);
         public abstract void Save();
     }
-
 }

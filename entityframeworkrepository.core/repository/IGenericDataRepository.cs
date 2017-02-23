@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository.core.repository
 {

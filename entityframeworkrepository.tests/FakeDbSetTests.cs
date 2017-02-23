@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using entityframeworkrepository.core;
+using entityframeworkrepository.core.entity;
 using NUnit.Framework;
 
 namespace entityframeworkrepository.tests

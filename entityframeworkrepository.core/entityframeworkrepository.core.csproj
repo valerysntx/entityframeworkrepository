@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -42,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="service\EntityService.cs" />
+    <Compile Include="service\IEntityService.cs" />
+    <Compile Include="service\IService.cs" />
+    <Compile Include="unitofwork\IUnitOfWork.cs" />
     <Compile Include="entity\AuditableEntity.cs" />
     <Compile Include="entity\BaseEntity.cs" />
     <Compile Include="cache\Cache.cs" />
@@ -49,9 +56,11 @@
     <Compile Include="entity\IAuditableEntity.cs" />
     <Compile Include="cache\ICache.cs" />
     <Compile Include="entity\IEntity.cs" />
-    <Compile Include="repository\AbstractCachedGenericRepository.cs" />
+    <Compile Include="repository\AbstractGenericRepository.cs" />
+    <Compile Include="repository\GenericDataRepository.cs" />
     <Compile Include="repository\IGenericDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="unitofwork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

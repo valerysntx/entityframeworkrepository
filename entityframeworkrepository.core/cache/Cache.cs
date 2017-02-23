@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace entityframeworkrepository.core
+namespace entityframeworkrepository.core.cache
 {
-  using System;
-using System.Collections.Generic;
-
-namespace Cache
+    namespace Cache
     {
         //Implementation of ICache
         /// <summary>
-        ///
-        ///
-        ///
+        ///   thread locking
         /// </summary>
         /// <typeparam name="TKey"></typeparam>
         /// <typeparam name="TValue"></typeparam>
-        public class Cache<TKey, TValue> :
-            ICache<TKey, TValue> where TKey : class
+        public class Cache<TKey, TValue> :ICache<TKey, TValue> where TKey : class
         {
             private readonly object _syncLock = new object();
 
@@ -28,13 +19,16 @@ namespace Cache
 
             public TValue this[TKey key]
             {
-                get {
+                get
+                {
                     lock (_syncLock)
                     {
                         return !_internalCache.ContainsKey(key) ? default(TValue) : _internalCache[key];
                     }
                 }
-                set {
+                set
+                {
+
                     lock (_syncLock)
                     {
                         _internalCache[key] = value;
