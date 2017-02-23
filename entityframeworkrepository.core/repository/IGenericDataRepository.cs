@@ -14,6 +14,5 @@ namespace entityframeworkrepository.core.repository
         T Update(params T[] items);
         T Remove(params T[] items);
         void Save();
-
     }
 }

@@ -1,36 +1,36 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-
+using System.Web;
+using entityframeworkrepository.core.cache;
 using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.unitofwork;
 
 namespace entityframeworkrepository.core.repository
 {
 
-    /// <summary>
-    ///  Generic Data Repository
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public partial class GenericDataRepository<T> : IGenericDataRepository<T> where T : BaseEntity
     {
         protected DbContext _entities;
         protected readonly IDbSet<T> _dbset;
+        protected ICacheProvider _cacheProvider;
 
         /// <summary>
         /// default ctor
         /// </summary>
         /// <param name="context"></param>
-        public GenericDataRepository(DbContext context)
+        public GenericDataRepository(DbContext context, ICacheProvider provider = null)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
             _entities = context;
+            _cacheProvider = provider ?? new DefaultCacheProvider();
             _dbset = context?.Set<T>();
         }
+
 
         /// <summary>
         /// GetAll
@@ -48,7 +48,6 @@ namespace entityframeworkrepository.core.repository
                     dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
                     list = dbQuery.AsNoTracking().ToList();
-
             }
             catch (SqlException ex)
             {
@@ -84,6 +83,23 @@ namespace entityframeworkrepository.core.repository
             return list;
         }
 
+
+        /// <summary>
+        /// Paged list
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="page"></param>
+        /// <param name="take"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
+       public virtual IList<T> GetPagedList(Func<T, bool> where, int page = 0, int take = 1000, params Expression<Func<T, object>>[] navigationProperties)
+       {
+           return GetList(where, navigationProperties)
+                  .Skip(page * take).Take(take)
+                  .ToList();
+
+       }
+
        public virtual T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
        {
             T item = null;
@@ -96,6 +112,7 @@ namespace entityframeworkrepository.core.repository
                 dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
                 item = dbQuery.AsNoTracking().FirstOrDefault(where);
+
 
             } catch (SqlException ex)
             {

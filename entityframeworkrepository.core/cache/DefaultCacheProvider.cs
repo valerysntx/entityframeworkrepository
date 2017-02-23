@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Caching;
 
 namespace entityframeworkrepository.core.cache
@@ -7,6 +8,7 @@ namespace entityframeworkrepository.core.cache
     public class DefaultCacheProvider : ICacheProvider
     {
         protected ObjectCache Cache { get { return MemoryCache.Default; } }
+
 
         public object Get(string key)
         {
