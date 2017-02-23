@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
 using entityframeworkrepository.core.entity;
+using entityframeworkrepository.core.repository;
 using entityframeworkrepository.core.service;
+using entityframeworkrepository.core.unitofwork;
 using Moq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace entityframeworkrepository.tests
@@ -36,6 +40,61 @@ namespace entityframeworkrepository.tests
 
             //Assert
             Assert.AreEqual(result.ToArray().Length, 1);
+        }
+
+
+        /// <summary>
+        /// DictionaryService
+        /// </summary>
+        internal class DictionaryService : EntityService<Dictionary>
+        {
+            /// <summary>
+            /// DictionaryService
+            /// </summary>
+            /// <param name="unitOfWork"></param>
+            /// <param name="repository"></param>
+            public DictionaryService(IUnitOfWork unitOfWork, IGenericDataRepository<Dictionary> repository) : base(unitOfWork, repository)
+            {
+            }
+        }
+
+        [Test]
+        public void Should_Create_with_DictionaryTable()
+        {
+
+            Dictionary dictionary = new Dictionary
+            {
+                Code = 100,
+                CompanyId = 1,
+                CreatedBy = 1,
+                DateAdded = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                DepartmentId = 1,
+                Description = "",
+                DictionaryType = "INSERTED",
+                FullDescription = "INSERTED",
+                Hierarchy = 1,
+                Id2 = 1,
+                Id3 = 1,
+                UpdatedBy = 1,
+                IsDeleted = false,
+                DictionaryTypeId = 20,
+            };
+
+            var ctx = new WorkBenchContext();
+            var dictionaryService = new DictionaryService(
+                        new UnitOfWork(ctx),
+                        new GenericDataRepository<Dictionary>(new WorkBenchContext())
+                       );
+
+            Assert.DoesNotThrow(() =>
+            {
+                dictionaryService.Create(dictionary);
+                dictionaryService.Update(dictionary);
+                dictionaryService.GetAll();
+                dictionaryService.Delete(dictionary);
+            } );
+
         }
 
     }
