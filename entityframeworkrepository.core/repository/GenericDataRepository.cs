@@ -5,8 +5,9 @@ using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Runtime.Remoting.Contexts;
+
 using entityframeworkrepository.core.entity;
+using entityframeworkrepository.core.unitofwork;
 
 namespace entityframeworkrepository.core.repository
 {
@@ -15,11 +16,10 @@ namespace entityframeworkrepository.core.repository
     ///  Generic Data Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GenericDataRepository<T> : IGenericDataRepository<T> where T : BaseEntity
+    public partial class GenericDataRepository<T> : IGenericDataRepository<T> where T : BaseEntity
     {
         protected DbContext _entities;
         protected readonly IDbSet<T> _dbset;
-
 
         /// <summary>
         /// default ctor
@@ -31,7 +31,6 @@ namespace entityframeworkrepository.core.repository
             _entities = context;
             _dbset = context?.Set<T>();
         }
-
 
         /// <summary>
         /// GetAll
@@ -163,7 +162,7 @@ namespace entityframeworkrepository.core.repository
         }
 
 
-        private static EntityState GetEntityState(EntityState entityState)
+        protected static EntityState GetEntityState(EntityState entityState)
         {
             return entityState;
         }

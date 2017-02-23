@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,16 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cache\ICacheProvider.cs" />
+    <Compile Include="repository\ICacheRepository.cs" />
     <Compile Include="service\EntityService.cs" />
     <Compile Include="service\IEntityService.cs" />
     <Compile Include="service\IService.cs" />
     <Compile Include="unitofwork\IUnitOfWork.cs" />
     <Compile Include="entity\AuditableEntity.cs" />
     <Compile Include="entity\BaseEntity.cs" />
-    <Compile Include="cache\Cache.cs" />
+    <Compile Include="cache\DefaultCacheProvider.cs" />
     <Compile Include="entity\Entity.cs" />
     <Compile Include="entity\IAuditableEntity.cs" />
-    <Compile Include="cache\ICache.cs" />
     <Compile Include="entity\IEntity.cs" />
     <Compile Include="repository\AbstractGenericRepository.cs" />
     <Compile Include="repository\GenericDataRepository.cs" />

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="EntityServicesTests.cs" />
     <Compile Include="FakeDbSetTests.cs" />
+    <Compile Include="GenericDataRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
