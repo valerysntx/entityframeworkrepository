@@ -8,7 +8,7 @@ using entityframeworkrepository.core.entity;
 namespace entityframeworkrepository.core.repository
 {
     /// <summary>
-    /// abstract
+    /// AbstractGenericRepository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract class AbstractGenericRepository<T> : IGenericDataRepository<T> where T : BaseEntity

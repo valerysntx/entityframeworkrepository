@@ -15,7 +15,7 @@ namespace entityframeworkrepository.core.cache
             return Cache[key];
         }
 
-        public void Set(string key, object data, int cacheTime)
+        public void Set(string key, object data, int cacheTime = 5)
         {
             CacheItemPolicy policy = new CacheItemPolicy() { AbsoluteExpiration = DateTime.Now + TimeSpan.FromMinutes(cacheTime) };
 

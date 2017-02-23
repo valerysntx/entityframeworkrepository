@@ -23,7 +23,7 @@ namespace entityframeworkrepository.tests
 
 
         /// <summary>
-        /// Persisting 3 people 
+        /// Persisting 3 people
         /// </summary>
         public class PersonRepository: GenericDataRepository<Person>
         {
@@ -40,6 +40,17 @@ namespace entityframeworkrepository.tests
             Assert.That(new PersonRepository(), Is.Not.Null);
             Assert.That(new PersonRepository().GetAll().Count, Is.GreaterThan(0));
         }
+
+
+        [Test]
+        public void Should_Do_Paged_Sets_Properly()
+        {
+            var people = new PersonRepository()
+                            .GetPagedList( x => x != null, 1, 2, person => person.Departments);
+            Assert.That(people,Is.Not.Null.Or.Empty);
+            Assert.That(people.Count, Is.EqualTo(2));
+        }
+
 
     }
 }

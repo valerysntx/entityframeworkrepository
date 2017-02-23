@@ -94,10 +94,7 @@ namespace entityframeworkrepository.core.repository
         /// <returns></returns>
        public virtual IList<T> GetPagedList(Func<T, bool> where, int page = 0, int take = 1000, params Expression<Func<T, object>>[] navigationProperties)
        {
-           return GetList(where, navigationProperties)
-                  .Skip(page * take).Take(take)
-                  .ToList();
-
+           return GetList(where, navigationProperties).Skip(page * take).Take(take).ToList();
        }
 
        public virtual T GetSingle(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
@@ -113,6 +110,7 @@ namespace entityframeworkrepository.core.repository
 
                 item = dbQuery.AsNoTracking().FirstOrDefault(where);
 
+                UpdateCache(item);
 
             } catch (SqlException ex)
             {
@@ -136,6 +134,9 @@ namespace entityframeworkrepository.core.repository
                     foreach (var item in items)
                     {
                         last = dbSet.Add(item);
+
+                        UpdateCache(last);
+
                         foreach (var entry in _entities?.ChangeTracker?.Entries<IAuditableEntity>())
                         {
                             var entity = entry?.Entity;
@@ -160,6 +161,24 @@ namespace entityframeworkrepository.core.repository
             }
 
             return last;
+        }
+
+        /// <summary>
+        /// UpdateCache
+        /// </summary>
+        /// <param name="last">"last"</param>
+        /// <param name="minutes"></param>
+        public virtual void UpdateCache(T last, int minutes = 5)
+        {
+            if (last == null) return;
+
+            var hash = last.GetHashCode().ToString("X");
+            if ( _cacheProvider != null && _cacheProvider.IsSet(hash) )
+            {
+                _cacheProvider.Invalidate(hash);
+            }
+
+           _cacheProvider?.Set(hash, last, minutes);
         }
 
         public T Remove(params T[] items)
