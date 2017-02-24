@@ -20,7 +20,7 @@ namespace entityframeworkrepository.webapp.Controllers
         public DictionaryController()
         {
             _ctx = new WorkBenchContext();
-            _repository = new DictionaryRepository((DbContext) _        `ctx);
+            _repository = new DictionaryRepository((DbContext) _ctx);
         }
 
 
