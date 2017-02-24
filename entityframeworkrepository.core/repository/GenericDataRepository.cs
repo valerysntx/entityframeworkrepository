@@ -25,10 +25,10 @@ namespace entityframeworkrepository.core.repository
         /// <param name="context"></param>
         public GenericDataRepository(DbContext context, ICacheProvider provider = null)
         {
-            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (context == null) throw new ArgumentNullException("@context");
             _entities = context;
             _cacheProvider = provider ?? new DefaultCacheProvider();
-            _dbset = context?.Set<T>();
+            _dbset = context.Set<T>();
         }
 
 
@@ -43,7 +43,7 @@ namespace entityframeworkrepository.core.repository
             try
             {
 
-                    IQueryable<T> dbQuery = _entities?.Set<T>();
+                    IQueryable<T> dbQuery = _entities.Set<T>();
 
                     dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
@@ -51,7 +51,7 @@ namespace entityframeworkrepository.core.repository
             }
             catch (SqlException ex)
             {
-                throw new EntityException($"{typeof (T)} - {ex.Message}", ex);
+                throw new EntityException(string.Format("{0} - {1}", typeof (T), ex.Message), ex);
             }
 
             return list;
@@ -68,7 +68,7 @@ namespace entityframeworkrepository.core.repository
             List<T> list;
             try
             {
-                    IQueryable<T> dbQuery = _entities?.Set<T>();
+                    IQueryable<T> dbQuery = _entities.Set<T>();
 
                     //EAGERLY
                     dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
@@ -77,7 +77,7 @@ namespace entityframeworkrepository.core.repository
             }
             catch (SqlException ex)
             {
-                throw new EntityException($"{typeof (T)} - {ex.Message}", ex);
+                throw new EntityException(string.Format("{0} - {1}", typeof (T), ex.Message), ex);
             }
 
             return list;
@@ -103,7 +103,7 @@ namespace entityframeworkrepository.core.repository
 
             try
             {
-                IQueryable<T> dbQuery = _entities?.Set<T>();
+                IQueryable<T> dbQuery = _entities.Set<T>();
 
                 //Apply eager loading
                 dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
@@ -114,7 +114,7 @@ namespace entityframeworkrepository.core.repository
 
             } catch (SqlException ex)
             {
-                throw new EntityException($"{typeof (T)} - {ex.Message}", ex);
+                throw new EntityException(string.Format("{0} - {1}", typeof (T), ex.Message), ex);
             }
 
             return item;
@@ -130,16 +130,16 @@ namespace entityframeworkrepository.core.repository
             T last = null;
             try
             {
-                    var dbSet = _entities?.Set<T>();
+                    var dbSet = _entities.Set<T>();
                     foreach (var item in items)
                     {
                         last = dbSet.Add(item);
 
                         UpdateCache(last);
 
-                        foreach (var entry in _entities?.ChangeTracker?.Entries<IAuditableEntity>())
+                        foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
                         {
-                            var entity = entry?.Entity;
+                            var entity = entry.Entity;
                             entry.State = GetEntityState(entry.State);
                             if (entry.State == EntityState.Added)
                             {
@@ -157,7 +157,7 @@ namespace entityframeworkrepository.core.repository
             }
             catch (SqlException ex)
             {
-                throw new EntityException($"{typeof (T)} - {ex.Message}", ex);
+                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
             }
 
             return last;
@@ -178,7 +178,7 @@ namespace entityframeworkrepository.core.repository
                 _cacheProvider.Invalidate(hash);
             }
 
-           _cacheProvider?.Set(hash, last, minutes);
+           _cacheProvider.Set(hash, last, minutes);
         }
 
         public T Remove(params T[] items)
@@ -189,12 +189,12 @@ namespace entityframeworkrepository.core.repository
 
         public void Save()
         {
-            _entities?.SaveChanges();
+            _entities.SaveChanges();
         }
 
         public T Attach(T entity)
         {
-            return _entities?.Set<T>()?.Attach(entity);
+            return _entities.Set<T>().Attach(entity);
         }
 
 

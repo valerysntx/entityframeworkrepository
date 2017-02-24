@@ -8,6 +8,7 @@ using System.Web.Http;
 using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.webapp.Repository;
+using Dictionary = entityframeworkrepository.Dictionary;
 
 namespace entityframeworkrepository.webapp.Controllers
 {
@@ -34,32 +35,32 @@ namespace entityframeworkrepository.webapp.Controllers
         // GET: api/Dictionary
         public IEnumerable<Dictionary> Get()
         {
-            return _repository?.GetAll(x => x.People).ToList();
+            return _repository.GetAll(x => x.People).ToList();
         }
 
         // GET: api/Dictionary paged list tests
         public IEnumerable<Dictionary> Get(int page, int count)
         {
             DictionaryRepository repository = (DictionaryRepository) _repository;
-            return repository?.GetPagedList(x => x.IsDeleted.Value != null, page, count, people => people.People);
+            return repository.GetPagedList(x => x.IsDeleted.Value != null, page, count, people => people.People);
         }
 
         // GET: api/Dictionary/5
         public Dictionary Get(int id)
         {
-            return _repository?.GetSingle(x => x.Id2.GetValueOrDefault() == id);
+            return _repository.GetSingle(x => x.Id2.GetValueOrDefault() == id);
         }
 
         // POST: api/Dictionary
         public void Post([FromBody]Dictionary value)
         {
-            _repository?.Add(value);
+            _repository.Add(value);
         }
 
         // PUT: api/Dictionary/5
         public void Put(int id, [FromBody]Dictionary value)
         {
-            var item = _repository?.GetSingle(x => x.Id2 == id);
+            var item = _repository.GetSingle(x => x.Id2 == id);
             if (item != null)
             {
                 _repository.Update(value);
@@ -69,7 +70,7 @@ namespace entityframeworkrepository.webapp.Controllers
         // DELETE: api/Dictionary/5
         public void Delete(int id)
         {
-            _repository?.Remove(_repository.GetSingle(x => x.Id2 == id));
+            _repository.Remove(_repository.GetSingle(x => x.Id2 == id));
         }
     }
 }

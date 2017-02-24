@@ -114,9 +114,6 @@ namespace entityframeworkrepository
             Dispose(true);
         }
 
-        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker { get; }
-        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
-        public System.Data.Entity.Database Database { get; }
         public System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
             throw new System.NotImplementedException();
@@ -142,6 +139,22 @@ namespace entityframeworkrepository
             throw new System.NotImplementedException();
         }
 
+
+
+        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
+        public System.Data.Entity.Database Database
+        {
+            get { throw new System.NotImplementedException(); }
+        }
     }
 }
 // </auto-generated>
