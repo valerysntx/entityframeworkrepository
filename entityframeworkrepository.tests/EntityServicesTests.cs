@@ -31,12 +31,12 @@ namespace entityframeworkrepository.tests
         public void Person_Get_All_Using_FakeDbSet()
         {
             //Arrange
-            _serviceMock?.Setup(x => x.GetAll())?.Returns(
+            _serviceMock.Setup(x => x.GetAll()).Returns(
                  new List<BaseEntity>(new [] { new FakeDbSet<Person>().Create() })
                );
 
             //Act
-            var result = _serviceMock?.Object?.GetAll();
+            var result = _serviceMock.Object.GetAll();
 
             //Assert
             Assert.AreEqual(result.ToArray().Length, 1);
@@ -78,7 +78,8 @@ namespace entityframeworkrepository.tests
                 Id3 = 1,
                 UpdatedBy = 1,
                 IsDeleted = false,
-                DictionaryTypeId = 20,
+                DictionaryTypeId = 20
+               
             };
 
             var ctx = new WorkBenchContext();

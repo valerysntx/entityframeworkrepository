@@ -32,8 +32,8 @@ namespace entityframeworkrepository.core.service
                 throw new ArgumentNullException("entity");
             }
 
-            _repository?.Add(entity);
-            _unitOfWork?.Commit();
+            _repository.Add(entity);
+            _unitOfWork.Commit();
         }
 
 
@@ -45,8 +45,8 @@ namespace entityframeworkrepository.core.service
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            _repository?.Update(entity);
-            _unitOfWork?.Commit();
+            _repository.Update(entity);
+            _unitOfWork.Commit();
         }
 
 
@@ -58,8 +58,8 @@ namespace entityframeworkrepository.core.service
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            _repository?.Remove(entity);
-            _unitOfWork?.Commit();
+            _repository.Remove(entity);
+            _unitOfWork.Commit();
         }
 
 
@@ -69,7 +69,7 @@ namespace entityframeworkrepository.core.service
         /// <returns></returns>
         public virtual IEnumerable<T> GetAll()
         {
-            return _repository?.GetAll();
+            return _repository.GetAll();
         }
     }
 }

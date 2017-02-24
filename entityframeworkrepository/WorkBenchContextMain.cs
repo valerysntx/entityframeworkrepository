@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace entityframeworkrepository
 {
+
+
+    public partial class FakeWorkBenchContext : IWorkBenchContext
+    {
+      
+
+    }
+
+
     /// <summary>
     /// WorkBenchContext
     /// </summary>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "entityframeworkrepository.model", "entityframeworkrepository\entityframeworkrepository.model.csproj", "{8CF810D7-571E-4136-9ED1-BF352BA8D61C}"
 EndProject
@@ -10,6 +10,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "entityframeworkrepository.tests", "entityframeworkrepository.tests\entityframeworkrepository.tests.csproj", "{4764E8DA-7958-4277-945C-010F5E754A6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "entityframeworkrepository.webapp", "entityframeworkrepository.webapp\entityframeworkrepository.webapp.csproj", "{38E58E9B-E91B-43B3-8CED-28184CC30490}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E735FD3E-49A3-4F5B-BC1F-6DA13863170B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
