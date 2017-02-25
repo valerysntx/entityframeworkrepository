@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResult
@@ -34,11 +36,11 @@ namespace entityframeworkrepository
 
         [Column(@"JobFormID", Order = 2, TypeName = "int")]
         [Display(Name = "Job form ID")]
-        public int? JobFormId { get; set; } // JobFormID
+        public System.Nullable<int> JobFormId { get; set; } // JobFormID
 
         [Column(@"CandidateID", Order = 3, TypeName = "int")]
         [Display(Name = "Candidate ID")]
-        public int? CandidateId { get; set; } // CandidateID
+        public System.Nullable<int> CandidateId { get; set; } // CandidateID
 
         [Column(@"FirstName", Order = 4, TypeName = "varchar")]
         [MaxLength(50)]
@@ -98,7 +100,7 @@ namespace entityframeworkrepository
 
         [Column(@"CVBankID", Order = 13, TypeName = "int")]
         [Display(Name = "Cvb ank ID")]
-        public int? CvBankId { get; set; } // CVBankID
+        public System.Nullable<int> CvBankId { get; set; } // CVBankID
 
         [Column(@"Source", Order = 14, TypeName = "varchar")]
         [MaxLength(50)]
@@ -115,19 +117,19 @@ namespace entityframeworkrepository
 
         [Column(@"IsRead", Order = 16, TypeName = "int")]
         [Display(Name = "Is read")]
-        public int? IsRead { get; set; } // IsRead
+        public System.Nullable<int> IsRead { get; set; } // IsRead
 
         [Column(@"IsDeleted", Order = 17, TypeName = "int")]
         [Display(Name = "Is deleted")]
-        public int? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<int> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"AdminBlock", Order = 18, TypeName = "int")]
         [Display(Name = "Admin block")]
-        public int? AdminBlock { get; set; } // AdminBlock
+        public System.Nullable<int> AdminBlock { get; set; } // AdminBlock
 
         [Column(@"ISCoverLetterIncluded", Order = 19, TypeName = "int")]
         [Display(Name = "Isc over letter included")]
-        public int? IsCoverLetterIncluded { get; set; } // ISCoverLetterIncluded
+        public System.Nullable<int> IsCoverLetterIncluded { get; set; } // ISCoverLetterIncluded
 
         [Column(@"QuestionAnswerXML", Order = 20, TypeName = "varchar(max)")]
         [Display(Name = "Question answer xml")]
@@ -135,19 +137,19 @@ namespace entityframeworkrepository
 
         [Column(@"UpdatedBy", Order = 21, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 22, TypeName = "int")]
         [Display(Name = "Created by")]
-        public int? CreatedBy { get; set; } // CreatedBy
+        public System.Nullable<int> CreatedBy { get; set; } // CreatedBy
 
         [Column(@"DateAdded", Order = 23, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 24, TypeName = "datetime")]
         [Display(Name = "Date updated")]
-        public System.DateTime? DateUpdated { get; set; } // DateUpdated
+        public System.Nullable<System.DateTime> DateUpdated { get; set; } // DateUpdated
 
         public JobFormResult()
         {

@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,9 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
     using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultsView
@@ -27,11 +28,11 @@ namespace entityframeworkrepository
     {
         [Column(@"IsDeleted", Order = 1, TypeName = "tinyint")]
         [Display(Name = "Is deleted")]
-        public byte? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<byte> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"JobFormID", Order = 2, TypeName = "int")]
         [Display(Name = "Job form ID")]
-        public int? JobFormId { get; set; } // JobFormID
+        public System.Nullable<int> JobFormId { get; set; } // JobFormID
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(@"CVBankID", Order = 3, TypeName = "int")]
@@ -68,7 +69,7 @@ namespace entityframeworkrepository
 
         [Column(@"CandidateID", Order = 8, TypeName = "int")]
         [Display(Name = "Candidate ID")]
-        public int? CandidateId { get; set; } // CandidateID
+        public System.Nullable<int> CandidateId { get; set; } // CandidateID
 
         [Column(@"ApplicantFakeName", Order = 9, TypeName = "varchar")]
         [MaxLength(101)]
@@ -78,7 +79,7 @@ namespace entityframeworkrepository
 
         [Column(@"DateApplied", Order = 10, TypeName = "datetime")]
         [Display(Name = "Date applied")]
-        public System.DateTime? DateApplied { get; set; } // DateApplied
+        public System.Nullable<System.DateTime> DateApplied { get; set; } // DateApplied
 
         [Column(@"JobTitle", Order = 11, TypeName = "varchar")]
         [MaxLength(50)]

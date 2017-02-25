@@ -5,7 +5,7 @@ using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository.core.repository
 {
-    public interface IGenericDataRepository<T> where T : BaseEntity
+    public interface IGenericDataRepository<T> where T : class
     {
         IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);

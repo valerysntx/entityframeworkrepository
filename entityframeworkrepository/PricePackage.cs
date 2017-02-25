@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // PricePackage
@@ -68,7 +70,7 @@ namespace entityframeworkrepository
 
         [Column(@"Discount", Order = 8, TypeName = "money")]
         [Display(Name = "Discount")]
-        public decimal? Discount { get; set; } // Discount
+        public System.Nullable<decimal> Discount { get; set; } // Discount
 
         [Column(@"UpdatedBy", Order = 9, TypeName = "int")]
         [Required]

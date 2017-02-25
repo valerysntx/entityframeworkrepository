@@ -77,10 +77,18 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\entityframeworkrepository.cache\entityframeworkrepository.cache.csproj">
+      <Project>{de24547c-5d2d-49d4-a271-bf3e9b1a5f0e}</Project>
+      <Name>entityframeworkrepository.cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository.core\entityframeworkrepository.core.csproj">
       <Project>{396ecc34-dbaf-44b4-b625-1b7fbc008aca}</Project>
       <Name>entityframeworkrepository.core</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\entityframeworkrepository.repository\entityframeworkrepository.repository.csproj">
+      <Project>{d46f9a76-a3aa-485b-a938-44e51fdfd5f7}</Project>
+      <Name>entityframeworkrepository.repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository\entityframeworkrepository.model.csproj">
       <Project>{8cf810d7-571e-4136-9ed1-bf352ba8d61c}</Project>

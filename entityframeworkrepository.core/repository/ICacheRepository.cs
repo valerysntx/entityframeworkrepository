@@ -1,4 +1,5 @@
-﻿using entityframeworkrepository.core.cache;
+﻿using entityframeworkrepository.cache;
+using entityframeworkrepository.core;
 
 namespace entityframeworkrepository.core.repository
 {

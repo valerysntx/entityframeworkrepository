@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Template
@@ -50,19 +52,19 @@ namespace entityframeworkrepository
 
         [Column(@"IsDeleted", Order = 5, TypeName = "tinyint")]
         [Display(Name = "Is deleted")]
-        public byte? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<byte> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"SortOrder", Order = 6, TypeName = "int")]
         [Display(Name = "Sort order")]
-        public int? SortOrder { get; set; } // SortOrder
+        public System.Nullable<int> SortOrder { get; set; } // SortOrder
 
         [Column(@"CompanyID", Order = 7, TypeName = "int")]
         [Display(Name = "Company ID")]
-        public int? CompanyId { get; set; } // CompanyID
+        public System.Nullable<int> CompanyId { get; set; } // CompanyID
 
         [Column(@"DepartmentID", Order = 8, TypeName = "int")]
         [Display(Name = "Department ID")]
-        public int? DepartmentId { get; set; } // DepartmentID
+        public System.Nullable<int> DepartmentId { get; set; } // DepartmentID
 
         [Column(@"UpdatedBy", Order = 9, TypeName = "int")]
         [Required]

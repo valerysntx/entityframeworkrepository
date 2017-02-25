@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq.Expressions;
-using entityframeworkrepository.core.cache;
-using entityframeworkrepository.core.repository;
+
+using entityframeworkrepository.cache;
+using entityframeworkrepository.repository;
+
 
 namespace entityframeworkrepository.webapp.Repository
 {

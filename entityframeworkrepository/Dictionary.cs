@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Dictionary
@@ -41,11 +43,11 @@ namespace entityframeworkrepository
 
         [Column(@"ID2", Order = 3, TypeName = "int")]
         [Display(Name = "Id 2")]
-        public int? Id2 { get; set; } // ID2
+        public System.Nullable<int> Id2 { get; set; } // ID2
 
         [Column(@"ID3", Order = 4, TypeName = "int")]
         [Display(Name = "Id 3")]
-        public int? Id3 { get; set; } // ID3
+        public System.Nullable<int> Id3 { get; set; } // ID3
 
         [Column(@"Description", Order = 5, TypeName = "varchar")]
         [MaxLength(50)]
@@ -66,35 +68,35 @@ namespace entityframeworkrepository
 
         [Column(@"Hierarchy", Order = 8, TypeName = "int")]
         [Display(Name = "Hierarchy")]
-        public int? Hierarchy { get; set; } // Hierarchy
+        public System.Nullable<int> Hierarchy { get; set; } // Hierarchy
 
         [Column(@"DepartmentID", Order = 9, TypeName = "int")]
         [Display(Name = "Department ID")]
-        public int? DepartmentId { get; set; } // DepartmentID
+        public System.Nullable<int> DepartmentId { get; set; } // DepartmentID
 
         [Column(@"CompanyID", Order = 10, TypeName = "int")]
         [Display(Name = "Company ID")]
-        public int? CompanyId { get; set; } // CompanyID
+        public System.Nullable<int> CompanyId { get; set; } // CompanyID
 
         [Column(@"IsDeleted", Order = 11, TypeName = "bit")]
         [Display(Name = "Is deleted")]
-        public bool? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<bool> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"UpdatedBy", Order = 12, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 13, TypeName = "int")]
         [Display(Name = "Created by")]
-        public int? CreatedBy { get; set; } // CreatedBy
+        public System.Nullable<int> CreatedBy { get; set; } // CreatedBy
 
         [Column(@"DateAdded", Order = 14, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 15, TypeName = "datetime")]
         [Display(Name = "Date updated")]
-        public System.DateTime? DateUpdated { get; set; } // DateUpdated
+        public System.Nullable<System.DateTime> DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
         [JsonIgnore]
@@ -106,7 +108,7 @@ namespace entityframeworkrepository
             Id3 = 0;
             DepartmentId = 0;
             CompanyId = 0;
-            People = new System.Collections.Generic.List<Person>();
+            People = new ObservableCollection<Person>();
             InitializePartial();
         }
 

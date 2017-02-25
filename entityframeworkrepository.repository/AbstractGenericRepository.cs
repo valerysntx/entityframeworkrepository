@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq.Expressions;
-using entityframeworkrepository.core.cache;
-using entityframeworkrepository.core.entity;
+using entityframeworkrepository.core.repository;
 
-namespace entityframeworkrepository.core.repository
+namespace entityframeworkrepository.repository
 {
     /// <summary>
     /// AbstractGenericRepository
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class AbstractGenericRepository<T> : IGenericDataRepository<T> where T : BaseEntity
+    public abstract class AbstractGenericRepository<T> : IGenericDataRepository<T> where T : class
     {
         protected AbstractGenericRepository()
         {

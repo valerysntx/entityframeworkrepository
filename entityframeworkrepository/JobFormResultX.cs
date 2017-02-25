@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultX
@@ -152,15 +154,15 @@ namespace entityframeworkrepository
 
         [Column(@"IsRead", Order = 16, TypeName = "tinyint")]
         [Display(Name = "Is read")]
-        public byte? IsRead { get; set; } // IsRead
+        public System.Nullable<byte> IsRead { get; set; } // IsRead
 
         [Column(@"IsDeleted", Order = 17, TypeName = "tinyint")]
         [Display(Name = "Is deleted")]
-        public byte? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<byte> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"AdminBlock", Order = 18, TypeName = "tinyint")]
         [Display(Name = "Admin block")]
-        public byte? AdminBlock { get; set; } // AdminBlock
+        public System.Nullable<byte> AdminBlock { get; set; } // AdminBlock
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(@"ISCoverLetterIncluded", Order = 19, TypeName = "tinyint")]

@@ -47,7 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cache\CacheExpirationMode.cs" />
+    <Compile Include="cache\ICacheKey.cs" />
+    <Compile Include="cache\ICachePolicy.cs" />
     <Compile Include="cache\ICacheProvider.cs" />
+    <Compile Include="cache\ICacheTag.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="IContainer.cs" />
+    <Compile Include="IQueryUnwrapper.cs" />
+    <Compile Include="Locator.cs" />
     <Compile Include="repository\ICacheRepository.cs" />
     <Compile Include="service\EntityService.cs" />
     <Compile Include="service\IEntityService.cs" />
@@ -55,12 +63,9 @@
     <Compile Include="unitofwork\IUnitOfWork.cs" />
     <Compile Include="entity\AuditableEntity.cs" />
     <Compile Include="entity\BaseEntity.cs" />
-    <Compile Include="cache\DefaultCacheProvider.cs" />
     <Compile Include="entity\Entity.cs" />
     <Compile Include="entity\IAuditableEntity.cs" />
     <Compile Include="entity\IEntity.cs" />
-    <Compile Include="repository\AbstractGenericRepository.cs" />
-    <Compile Include="repository\GenericDataRepository.cs" />
     <Compile Include="repository\IGenericDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="unitofwork\UnitOfWork.cs" />

@@ -8,6 +8,7 @@ using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.core.service;
 using entityframeworkrepository.core.unitofwork;
+using entityframeworkrepository.repository;
 using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -32,7 +33,7 @@ namespace entityframeworkrepository.tests
         {
             //Arrange
             _serviceMock.Setup(x => x.GetAll()).Returns(
-                 new List<BaseEntity>(new [] { new FakeDbSet<Person>().Create() })
+                 new System.Collections.Generic.List<BaseEntity>(new [] { new FakeDbSet<Person>().Create() })
                );
 
             //Act

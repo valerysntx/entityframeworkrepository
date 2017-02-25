@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Event
@@ -34,7 +36,7 @@ namespace entityframeworkrepository
 
         [Column(@"JobFormResultID", Order = 2, TypeName = "int")]
         [Display(Name = "Job form result ID")]
-        public int? JobFormResultId { get; set; } // JobFormResultID
+        public System.Nullable<int> JobFormResultId { get; set; } // JobFormResultID
 
         [Column(@"EventNote", Order = 3, TypeName = "varchar")]
         [MaxLength(200)]
@@ -44,35 +46,35 @@ namespace entityframeworkrepository
 
         [Column(@"EventTypeID", Order = 4, TypeName = "int")]
         [Display(Name = "Event type ID")]
-        public int? EventTypeId { get; set; } // EventTypeID
+        public System.Nullable<int> EventTypeId { get; set; } // EventTypeID
 
         [Column(@"EventStartDate", Order = 5, TypeName = "datetime")]
         [Display(Name = "Event start date")]
-        public System.DateTime? EventStartDate { get; set; } // EventStartDate
+        public System.Nullable<System.DateTime> EventStartDate { get; set; } // EventStartDate
 
         [Column(@"EventEndDate", Order = 6, TypeName = "datetime")]
         [Display(Name = "Event end date")]
-        public System.DateTime? EventEndDate { get; set; } // EventEndDate
+        public System.Nullable<System.DateTime> EventEndDate { get; set; } // EventEndDate
 
         [Column(@"EventAttendee", Order = 7, TypeName = "int")]
         [Display(Name = "Event attendee")]
-        public int? EventAttendee { get; set; } // EventAttendee
+        public System.Nullable<int> EventAttendee { get; set; } // EventAttendee
 
         [Column(@"UpdatedBy", Order = 8, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 9, TypeName = "int")]
         [Display(Name = "Created by")]
-        public int? CreatedBy { get; set; } // CreatedBy
+        public System.Nullable<int> CreatedBy { get; set; } // CreatedBy
 
         [Column(@"DateAdded", Order = 10, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 11, TypeName = "datetime")]
         [Display(Name = "Date updated")]
-        public System.DateTime? DateUpdated { get; set; } // DateUpdated
+        public System.Nullable<System.DateTime> DateUpdated { get; set; } // DateUpdated
 
         public Event()
         {

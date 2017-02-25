@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
+using entityframeworkrepository.repository;
 using Moq;
 using NUnit.Framework;
 

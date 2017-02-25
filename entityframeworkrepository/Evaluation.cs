@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // The table 'Evaluation' is not usable by entity framework because it
@@ -28,7 +30,7 @@ namespace entityframeworkrepository
     {
         [Column(@"EvaluationID", Order = 1, TypeName = "int")]
         [Display(Name = "Evaluation ID")]
-        public int? EvaluationId { get; set; } // EvaluationID
+        public System.Nullable<int> EvaluationId { get; set; } // EvaluationID
 
         [Column(@"EvaluationText", Order = 2, TypeName = "varchar")]
         [MaxLength(100)]
@@ -44,31 +46,31 @@ namespace entityframeworkrepository
 
         [Column(@"EvalutionTypeID", Order = 4, TypeName = "int")]
         [Display(Name = "Evalution type ID")]
-        public int? EvalutionTypeId { get; set; } // EvalutionTypeID
+        public System.Nullable<int> EvalutionTypeId { get; set; } // EvalutionTypeID
 
         [Column(@"JobFormResultID", Order = 5, TypeName = "int")]
         [Display(Name = "Job form result ID")]
-        public int? JobFormResultId { get; set; } // JobFormResultID
+        public System.Nullable<int> JobFormResultId { get; set; } // JobFormResultID
 
         [Column(@"StageID", Order = 6, TypeName = "int")]
         [Display(Name = "Stage ID")]
-        public int? StageId { get; set; } // StageID
+        public System.Nullable<int> StageId { get; set; } // StageID
 
         [Column(@"UpdatedBy", Order = 7, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 8, TypeName = "int")]
         [Display(Name = "Created by")]
-        public int? CreatedBy { get; set; } // CreatedBy
+        public System.Nullable<int> CreatedBy { get; set; } // CreatedBy
 
         [Column(@"DateAdded", Order = 9, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 10, TypeName = "datetime")]
         [Display(Name = "Date updated")]
-        public System.DateTime? DateUpdated { get; set; } // DateUpdated
+        public System.Nullable<System.DateTime> DateUpdated { get; set; } // DateUpdated
 
         public Evaluation()
         {

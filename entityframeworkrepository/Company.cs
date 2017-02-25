@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Company
@@ -108,11 +110,11 @@ namespace entityframeworkrepository
 
         [Column(@"IsDeleted", Order = 14, TypeName = "int")]
         [Display(Name = "Is deleted")]
-        public int? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<int> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"CountryID", Order = 15, TypeName = "int")]
         [Display(Name = "Country ID")]
-        public int? CountryId { get; set; } // CountryID
+        public System.Nullable<int> CountryId { get; set; } // CountryID
 
         [Column(@"City", Order = 16, TypeName = "int")]
         [Required]
@@ -145,7 +147,7 @@ namespace entityframeworkrepository
 
         public Company()
         {
-            Departments = new System.Collections.Generic.List<Department>();
+            Departments = new ObservableCollection<Department>();
             InitializePartial();
         }
 

@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Stage
@@ -34,11 +36,11 @@ namespace entityframeworkrepository
 
         [Column(@"ID", Order = 2, TypeName = "int")]
         [Display(Name = "Id")]
-        public int? Id { get; set; } // ID
+        public System.Nullable<int> Id { get; set; } // ID
 
         [Column(@"JobFormResultID", Order = 3, TypeName = "int")]
         [Display(Name = "Job form result ID")]
-        public int? JobFormResultId { get; set; } // JobFormResultID
+        public System.Nullable<int> JobFormResultId { get; set; } // JobFormResultID
 
         [Column(@"NewsStageName", Order = 4, TypeName = "varchar")]
         [MaxLength(20)]
@@ -48,7 +50,7 @@ namespace entityframeworkrepository
 
         [Column(@"DepartmentID", Order = 5, TypeName = "int")]
         [Display(Name = "Department ID")]
-        public int? DepartmentId { get; set; } // DepartmentID
+        public System.Nullable<int> DepartmentId { get; set; } // DepartmentID
 
         [Column(@"UpdatedBy", Order = 6, TypeName = "int")]
         [Required]
@@ -76,7 +78,7 @@ namespace entityframeworkrepository
 
         public Stage()
         {
-            Pipelines = new System.Collections.Generic.List<Pipeline>();
+            Pipelines = new ObservableCollection<Pipeline>();
             InitializePartial();
         }
 

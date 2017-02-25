@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // TokenManager
@@ -68,7 +70,7 @@ namespace entityframeworkrepository
 
         [Column(@"DateAdded", Order = 8, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 9, TypeName = "datetime")]
         [Required]

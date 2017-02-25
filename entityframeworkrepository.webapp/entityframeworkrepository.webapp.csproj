@@ -332,9 +332,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\entityframeworkrepository.cache\entityframeworkrepository.cache.csproj">
+      <Project>{de24547c-5d2d-49d4-a271-bf3e9b1a5f0e}</Project>
+      <Name>entityframeworkrepository.cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository.core\entityframeworkrepository.core.csproj">
       <Project>{396ECC34-DBAF-44B4-B625-1B7FBC008ACA}</Project>
       <Name>entityframeworkrepository.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\entityframeworkrepository.repository\entityframeworkrepository.repository.csproj">
+      <Project>{d46f9a76-a3aa-485b-a938-44e51fdfd5f7}</Project>
+      <Name>entityframeworkrepository.repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository\entityframeworkrepository.model.csproj">
       <Project>{8CF810D7-571E-4136-9ED1-BF352BA8D61C}</Project>
