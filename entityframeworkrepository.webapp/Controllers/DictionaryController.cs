@@ -42,7 +42,7 @@ namespace entityframeworkrepository.webapp.Controllers
         public IEnumerable<Dictionary> Get(int page, int count)
         {
             DictionaryRepository repository = (DictionaryRepository) _repository;
-            return repository.GetPagedList(x => x.IsDeleted.Value != null, page, count, people => people.People);
+            return repository.GetPagedList(x => x.IsDeleted.GetValueOrDefault(false) == false, page, count, people => people.People);
         }
 
         // GET: api/Dictionary/5

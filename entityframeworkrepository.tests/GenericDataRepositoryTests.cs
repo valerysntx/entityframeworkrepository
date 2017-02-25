@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using entityframeworkrepository.core.entity;
+﻿using System.Data.Entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.repository;
-using Moq;
 using NUnit.Framework;
 
 namespace entityframeworkrepository.tests
@@ -18,7 +11,7 @@ namespace entityframeworkrepository.tests
         [Test]
         public void Should_Create_GenericDataRepository_Instance()
         {
-          IGenericDataRepository<Person> repository = new GenericDataRepository<Person>(new WorkBenchContext());
+          IGenericDataRepository<Person> repository = new GenericDataRepository<Person>((DbContext)new WorkBenchContext());
           Assert.That(repository, Is.Not.Null);
         }
 
@@ -28,7 +21,10 @@ namespace entityframeworkrepository.tests
         /// </summary>
         public class PersonRepository: GenericDataRepository<Person>
         {
-            public PersonRepository() : base(new WorkBenchContext())
+            /// <summary>
+            /// PersonRepository
+            /// </summary>
+            public PersonRepository() : base((DbContext)new WorkBenchContext())
             {
                 Add(new Person[] {new Person(), new Person(), new Person()});
                 Save();
