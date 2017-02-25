@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Mvc;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -28,13 +29,22 @@ namespace entityframeworkrepository.webapp
 
             //    config.Formatters.Add(new JQueryMvcFormUrlEncodedFormatter( ));
 
-            config.Formatters.JsonFormatter.SerializerSettings.MaxDepth = 3;
-
+            config.Formatters.JsonFormatter.SerializerSettings.MaxDepth = 2;
 
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = true;
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+            config.Formatters.JsonFormatter.SerializerSettings.DateParseHandling = DateParseHandling.DateTime;
+            config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+            config.Formatters.JsonFormatter.SerializerSettings.MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead;
+            config.Formatters.JsonFormatter.SerializerSettings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
+            config.Formatters.JsonFormatter.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.All;
+
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();

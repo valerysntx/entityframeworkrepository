@@ -56,7 +56,10 @@
     <Compile Include="IContainer.cs" />
     <Compile Include="IQueryUnwrapper.cs" />
     <Compile Include="Locator.cs" />
+    <Compile Include="query\IDbQuery.cs" />
+    <Compile Include="query\IDbQueryCache.cs" />
     <Compile Include="repository\ICacheRepository.cs" />
+    <Compile Include="repository\IGenericCacheRepository.cs" />
     <Compile Include="service\EntityService.cs" />
     <Compile Include="service\IEntityService.cs" />
     <Compile Include="service\IService.cs" />

@@ -10,30 +10,28 @@ using System.Linq.Expressions;
 using entityframeworkrepository.cache;
 using entityframeworkrepository.cache.Extentions;
 using entityframeworkrepository.core.entity;
+using entityframeworkrepository.core.query;
 using entityframeworkrepository.core.repository;
 
 namespace entityframeworkrepository.repository
 {
-
     /// <summary>
-    /// Generic Data Repository - Decouple ICacheProvider via ServiceLocator
+    /// Generic Data Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public partial class GenericDataRepository<T> : IGenericDataRepository<T> where T : class
     {
         protected DbContext _entities;
         protected readonly IDbSet<T> _dbset;
-        protected ICacheProvider _cacheProvider;
 
         /// <summary>
         /// default ctor
         /// </summary>
         /// <param name="context"></param>
-        public GenericDataRepository(DbContext context, ICacheProvider provider = null)
+        public GenericDataRepository(DbContext context)
         {
             if (context == null) throw new ArgumentNullException("@context");
             _entities = context;
-            _cacheProvider = provider ?? Locator.Current.Resolve<ICacheProvider>();
             _dbset = context.Set<T>();
         }
 
@@ -52,10 +50,7 @@ namespace entityframeworkrepository.repository
 
                     dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
-                    list = dbQuery.AsQueryable()
-                                  .AsNoTracking()
-                                  .FromCache((CachePolicy) CachePolicy.WithSlidingExpiration(TimeSpan.FromMinutes(10)))
-                                  .ToList();
+                    list = ToQueryable(dbQuery).ToList();
             }
             catch (SqlException ex)
             {
@@ -65,14 +60,24 @@ namespace entityframeworkrepository.repository
             return list;
         }
 
-       /// <summary>
-       ///GetList
-       /// </summary>
-       /// <param name="where"></param>
-       /// <param name="navigationProperties"></param>
-       /// <returns></returns>
-       public virtual IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
-       {
+        /// <summary>
+        ///  Database Query Abstraction
+        /// </summary>
+        /// <param name="dbQuery"></param>
+        /// <returns></returns>
+        public IQueryable<T> ToQueryable(IQueryable<T> dbQuery)
+        {
+            return dbQuery.AsQueryable().AsNoTracking();
+        }
+
+        /// <summary>
+        ///GetList
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="navigationProperties"></param>
+        /// <returns></returns>
+        public virtual IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
+        {
             List<T> list;
             try
             {
@@ -81,12 +86,7 @@ namespace entityframeworkrepository.repository
                     //EAGERLY
                     dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
-                    list = dbQuery
-                            .AsQueryable()
-                            .AsNoTracking()
-                            .FromCache((CachePolicy)CachePolicy.WithSlidingExpiration(TimeSpan.FromMinutes(10)))
-                            .Where(where)
-                            .ToList();
+                    list = ToQueryable(dbQuery).Where(where).ToList();
             }
             catch (SqlException ex)
             {
@@ -121,11 +121,7 @@ namespace entityframeworkrepository.repository
                 //Apply eager loading
                 dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
 
-                item =
-                    dbQuery.AsQueryable()
-                           .AsNoTracking()
-                           .FromCache((CachePolicy) CachePolicy.WithSlidingExpiration(TimeSpan.FromMinutes(10)))
-                           .FirstOrDefault(where);
+                item = ToQueryable(dbQuery).FirstOrDefault(where);
 
             } catch (SqlException ex)
             {
@@ -149,10 +145,6 @@ namespace entityframeworkrepository.repository
                     foreach (var item in items)
                     {
                         last = dbSet.Add(item);
-                        last = dbSet.FromCache((CachePolicy) CachePolicy.WithSlidingExpiration(TimeSpan.FromMinutes(10)))
-                                    .FirstOrDefault(
-                                            w => ((item) as IEntityWithKey).EntityKey == ((w) as IEntityWithKey).EntityKey
-                                           ) ?? last;
 
                         foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
                         {

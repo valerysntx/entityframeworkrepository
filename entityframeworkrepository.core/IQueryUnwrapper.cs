@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace entityframeworkrepository
+namespace entityframeworkrepository.core
 {
     /// <summary>
     /// A generic <see langword="interface"/> for unwrapping an underlying queries.
@@ -16,7 +15,7 @@ namespace entityframeworkrepository
         /// <returns>The unwrapped query</returns>
         IQueryable<TEntity> Unwrap<TEntity>(IQueryable<TEntity> query)
             where TEntity : class;
-        
+
         /// <summary>
         /// Unwrap the specified <paramref name="query"/>.
         /// </summary>

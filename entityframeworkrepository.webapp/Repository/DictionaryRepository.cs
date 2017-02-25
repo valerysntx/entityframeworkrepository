@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq.Expressions;
 
-using entityframeworkrepository.cache;
 using entityframeworkrepository.repository;
 
 
@@ -11,7 +10,7 @@ namespace entityframeworkrepository.webapp.Repository
 {
     public class DictionaryRepository : GenericDataRepository<Dictionary>
     {
-        public DictionaryRepository(DbContext context, ICacheProvider provider = null) : base(context, provider)
+        public DictionaryRepository(DbContext context) : base(context)
         {
         }
 
