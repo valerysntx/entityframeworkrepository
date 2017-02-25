@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // Activity
@@ -70,7 +70,9 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("CreatedBy")] public virtual Person Person_CreatedBy { get; set; } // FK_Activity_Person
+        [JsonIgnore]
         [ForeignKey("UpdatedBy")] public virtual Person Person_UpdatedBy { get; set; } // FK_Activity_Person1
 
         public Activity()

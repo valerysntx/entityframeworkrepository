@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // CVBank
@@ -69,6 +69,7 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<CvBankOwner> CvBankOwners { get; set; } // CVBankOwner.FK_CVBankOwner_CVBank
 
         public CvBank()

@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoard
@@ -78,6 +78,7 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<JobBoardCredential> JobBoardCredentials { get; set; } // JobBoardCredential.FK_JobBoardCredential_JobBoard
 
         public JobBoard()

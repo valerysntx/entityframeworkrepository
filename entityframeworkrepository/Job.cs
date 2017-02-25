@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // Job
@@ -153,9 +153,11 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<JobForm> JobForms { get; set; } // JobForm.FK_JobForm_Job
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("PersonId")] public virtual Person Person { get; set; } // FK_Job_Person
 
         public Job()

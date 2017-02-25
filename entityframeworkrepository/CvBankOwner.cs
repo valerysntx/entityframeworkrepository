@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // CVBankOwner
@@ -67,6 +67,7 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("CvBankId")] public virtual CvBank CvBank { get; set; } // FK_CVBankOwner_CVBank
 
         public CvBankOwner()

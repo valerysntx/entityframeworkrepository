@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     public partial interface IWorkBenchContext : System.IDisposable
@@ -37,6 +38,7 @@ namespace entityframeworkrepository
         System.Data.Entity.DbSet<JobFormResult> JobFormResults { get; set; } // JobFormResult
         System.Data.Entity.DbSet<JobFormResultDetail> JobFormResultDetails { get; set; } // JobFormResultDetail
         System.Data.Entity.DbSet<JobFormResultQa> JobFormResultQas { get; set; } // JobFormResultQA
+        System.Data.Entity.DbSet<JobFormResultsView> JobFormResultsViews { get; set; } // JobFormResultsView
         System.Data.Entity.DbSet<JobFormResultX> JobFormResultXes { get; set; } // JobFormResultX
         System.Data.Entity.DbSet<Person> People { get; set; } // Person
         System.Data.Entity.DbSet<Pipeline> Pipelines { get; set; } // Pipeline

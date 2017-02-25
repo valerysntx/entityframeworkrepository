@@ -19,20 +19,31 @@ namespace entityframeworkrepository
     using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
-    // CVBank
+    // JobFormResultsView
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
-    public partial class CvBankConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CvBank>
+    public partial class JobFormResultsViewConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<JobFormResultsView>
     {
-        public CvBankConfiguration()
+        public JobFormResultsViewConfiguration()
             : this("dbo")
         {
         }
 
-        public CvBankConfiguration(string schema)
+        public JobFormResultsViewConfiguration(string schema)
         {
-            Property(x => x.CvBankText).IsOptional().IsUnicode(false);
-            Property(x => x.CvBankUniqueId).IsOptional().IsUnicode(false);
+            Property(x => x.IsDeleted).IsOptional();
+            Property(x => x.JobFormId).IsOptional();
             Property(x => x.CvBankFilename).IsOptional().IsUnicode(false);
+            Property(x => x.ApplicantName).IsOptional().IsUnicode(false);
+            Property(x => x.CandidateId).IsOptional();
+            Property(x => x.ApplicantFakeName).IsOptional().IsUnicode(false);
+            Property(x => x.DateApplied).IsOptional();
+            Property(x => x.JobTitle).IsOptional().IsUnicode(false);
+            Property(x => x.JobDescription).IsOptional().IsUnicode(false);
+            Property(x => x.JobPostedName).IsOptional().IsUnicode(false);
+            Property(x => x.JobUpdatedByName).IsOptional().IsUnicode(false);
+            Property(x => x.CompanyName).IsUnicode(false);
+            Property(x => x.Department).IsUnicode(false);
+
             InitializePartial();
         }
         partial void InitializePartial();

@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     using System.Linq;
@@ -40,6 +41,7 @@ namespace entityframeworkrepository
         public System.Data.Entity.DbSet<JobFormResult> JobFormResults { get; set; }
         public System.Data.Entity.DbSet<JobFormResultDetail> JobFormResultDetails { get; set; }
         public System.Data.Entity.DbSet<JobFormResultQa> JobFormResultQas { get; set; }
+        public System.Data.Entity.DbSet<JobFormResultsView> JobFormResultsViews { get; set; }
         public System.Data.Entity.DbSet<JobFormResultX> JobFormResultXes { get; set; }
         public System.Data.Entity.DbSet<Person> People { get; set; }
         public System.Data.Entity.DbSet<Pipeline> Pipelines { get; set; }
@@ -70,6 +72,7 @@ namespace entityframeworkrepository
             JobFormResults = new FakeDbSet<JobFormResult>("JobFormResultId");
             JobFormResultDetails = new FakeDbSet<JobFormResultDetail>("JobFormResultDetailId");
             JobFormResultQas = new FakeDbSet<JobFormResultQa>("JobFormResultQaid");
+            JobFormResultsViews = new FakeDbSet<JobFormResultsView>("CvBankId", "CvBankOwnerId", "JobFormResultId", "JobCreatedById", "CompanyId", "CompanyName", "DepartmentId", "Department");
             JobFormResultXes = new FakeDbSet<JobFormResultX>("JobFormResultId", "JobFormId", "CandidateId", "FirstName", "LastName", "Email", "Headline", "Telephone", "Address", "Photo", "Video", "Summary", "CvBankId", "Referer", "IsCoverLetterIncluded", "UpdatedBy", "CreatedBy", "DateAdded", "DateUpdated");
             People = new FakeDbSet<Person>("PersonId");
             Pipelines = new FakeDbSet<Pipeline>("PipelineId");
@@ -114,6 +117,9 @@ namespace entityframeworkrepository
             Dispose(true);
         }
 
+        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker { get; }
+        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
+        public System.Data.Entity.Database Database { get; }
         public System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
             throw new System.NotImplementedException();
@@ -139,22 +145,6 @@ namespace entityframeworkrepository
             throw new System.NotImplementedException();
         }
 
-
-
-        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public System.Data.Entity.Database Database
-        {
-            get { throw new System.NotImplementedException(); }
-        }
     }
 }
 // </auto-generated>

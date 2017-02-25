@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // Pipeline
@@ -72,6 +72,7 @@ namespace entityframeworkrepository
         public bool IsDeclined { get; set; } // IsDeclined
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("StageId")] public virtual Stage Stage { get; set; } // FK_Pipeline_Stage
 
         public Pipeline()

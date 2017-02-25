@@ -12,11 +12,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     // Person
@@ -140,14 +140,21 @@ namespace entityframeworkrepository
         public System.DateTime? DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Activity> Activities_CreatedBy { get; set; } // Activity.FK_Activity_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Activity> Activities_UpdatedBy { get; set; } // Activity.FK_Activity_Person1
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Department> Departments { get; set; } // Many to many mapping
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Job> Jobs { get; set; } // Job.FK_Job_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Template> Templates_CreatedBy { get; set; } // Template.FK_Template_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Template> Templates_UpdatedBy { get; set; } // Template.FK_Template_Person2
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("DictionaryTypeId")] public virtual Dictionary Dictionary { get; set; } // FK_Person_Dictionary
 
         public Person()

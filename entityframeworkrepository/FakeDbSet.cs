@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace entityframeworkrepository
 {
     using entityframeworkrepository.core;
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
 
     using System.Linq;
