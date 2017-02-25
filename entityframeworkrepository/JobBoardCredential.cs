@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobBoardCredential
@@ -85,6 +87,7 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("JobBoardId")] public virtual JobBoard JobBoard { get; set; } // FK_JobBoardCredential_JobBoard
 
         public JobBoardCredential()

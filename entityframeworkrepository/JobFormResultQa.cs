@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultQA
@@ -80,11 +82,11 @@ namespace entityframeworkrepository
 
         [Column(@"QuestionWeight", Order = 11, TypeName = "int")]
         [Display(Name = "Question weight")]
-        public int? QuestionWeight { get; set; } // QuestionWeight
+        public System.Nullable<int> QuestionWeight { get; set; } // QuestionWeight
 
         [Column(@"IsAnswer", Order = 12, TypeName = "bit")]
         [Display(Name = "Is answer")]
-        public bool? IsAnswer { get; set; } // IsAnswer
+        public System.Nullable<bool> IsAnswer { get; set; } // IsAnswer
 
         public JobFormResultQa()
         {

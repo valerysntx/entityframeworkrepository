@@ -105,8 +105,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -332,9 +333,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\entityframeworkrepository.cache\entityframeworkrepository.cache.csproj">
+      <Project>{de24547c-5d2d-49d4-a271-bf3e9b1a5f0e}</Project>
+      <Name>entityframeworkrepository.cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository.core\entityframeworkrepository.core.csproj">
       <Project>{396ECC34-DBAF-44B4-B625-1B7FBC008ACA}</Project>
       <Name>entityframeworkrepository.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\entityframeworkrepository.repository\entityframeworkrepository.repository.csproj">
+      <Project>{d46f9a76-a3aa-485b-a938-44e51fdfd5f7}</Project>
+      <Name>entityframeworkrepository.repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\entityframeworkrepository\entityframeworkrepository.model.csproj">
       <Project>{8CF810D7-571E-4136-9ED1-BF352BA8D61C}</Project>

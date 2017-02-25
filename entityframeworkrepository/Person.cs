@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Person
@@ -79,11 +81,11 @@ namespace entityframeworkrepository
 
         [Column(@"IsLockedOut", Order = 9, TypeName = "int")]
         [Display(Name = "Is locked out")]
-        public int? IsLockedOut { get; set; } // IsLockedOut
+        public System.Nullable<int> IsLockedOut { get; set; } // IsLockedOut
 
         [Column(@"IsReal", Order = 10, TypeName = "int")]
         [Display(Name = "Is real")]
-        public int? IsReal { get; set; } // IsReal
+        public System.Nullable<int> IsReal { get; set; } // IsReal
 
         [Column(@"Picture", Order = 11, TypeName = "varchar")]
         [MaxLength(100)]
@@ -111,11 +113,11 @@ namespace entityframeworkrepository
 
         [Column(@"DictionaryTypeID", Order = 15, TypeName = "int")]
         [Display(Name = "Dictionary type ID")]
-        public int? DictionaryTypeId { get; set; } // DictionaryTypeID
+        public System.Nullable<int> DictionaryTypeId { get; set; } // DictionaryTypeID
 
         [Column(@"SignatureOnOff", Order = 16, TypeName = "int")]
         [Display(Name = "Signature on off")]
-        public int? SignatureOnOff { get; set; } // SignatureOnOff
+        public System.Nullable<int> SignatureOnOff { get; set; } // SignatureOnOff
 
         [Column(@"CampaignSource", Order = 17, TypeName = "varchar")]
         [MaxLength(30)]
@@ -125,39 +127,46 @@ namespace entityframeworkrepository
 
         [Column(@"UpdatedBy", Order = 18, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 19, TypeName = "int")]
         [Display(Name = "Created by")]
-        public int? CreatedBy { get; set; } // CreatedBy
+        public System.Nullable<int> CreatedBy { get; set; } // CreatedBy
 
         [Column(@"DateAdded", Order = 20, TypeName = "datetime")]
         [Display(Name = "Date added")]
-        public System.DateTime? DateAdded { get; set; } // DateAdded
+        public System.Nullable<System.DateTime> DateAdded { get; set; } // DateAdded
 
         [Column(@"DateUpdated", Order = 21, TypeName = "datetime")]
         [Display(Name = "Date updated")]
-        public System.DateTime? DateUpdated { get; set; } // DateUpdated
+        public System.Nullable<System.DateTime> DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Activity> Activities_CreatedBy { get; set; } // Activity.FK_Activity_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Activity> Activities_UpdatedBy { get; set; } // Activity.FK_Activity_Person1
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Department> Departments { get; set; } // Many to many mapping
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Job> Jobs { get; set; } // Job.FK_Job_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Template> Templates_CreatedBy { get; set; } // Template.FK_Template_Person
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Template> Templates_UpdatedBy { get; set; } // Template.FK_Template_Person2
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("DictionaryTypeId")] public virtual Dictionary Dictionary { get; set; } // FK_Person_Dictionary
 
         public Person()
         {
-            Activities_CreatedBy = new System.Collections.Generic.List<Activity>();
-            Activities_UpdatedBy = new System.Collections.Generic.List<Activity>();
-            Departments = new System.Collections.Generic.List<Department>();
-            Jobs = new System.Collections.Generic.List<Job>();
-            Templates_CreatedBy = new System.Collections.Generic.List<Template>();
-            Templates_UpdatedBy = new System.Collections.Generic.List<Template>();
+            Activities_CreatedBy = new ObservableCollection<Activity>();
+            Activities_UpdatedBy = new ObservableCollection<Activity>();
+            Departments = new ObservableCollection<Department>();
+            Jobs = new ObservableCollection<Job>();
+            Templates_CreatedBy = new ObservableCollection<Template>();
+            Templates_UpdatedBy = new ObservableCollection<Template>();
             InitializePartial();
         }
 

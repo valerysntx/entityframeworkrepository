@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial interface IWorkBenchContext : System.IDisposable
@@ -37,6 +40,7 @@ namespace entityframeworkrepository
         System.Data.Entity.DbSet<JobFormResult> JobFormResults { get; set; } // JobFormResult
         System.Data.Entity.DbSet<JobFormResultDetail> JobFormResultDetails { get; set; } // JobFormResultDetail
         System.Data.Entity.DbSet<JobFormResultQa> JobFormResultQas { get; set; } // JobFormResultQA
+        System.Data.Entity.DbSet<JobFormResultsView> JobFormResultsViews { get; set; } // JobFormResultsView
         System.Data.Entity.DbSet<JobFormResultX> JobFormResultXes { get; set; } // JobFormResultX
         System.Data.Entity.DbSet<Person> People { get; set; } // Person
         System.Data.Entity.DbSet<Pipeline> Pipelines { get; set; } // Pipeline

@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Pipeline
@@ -49,7 +51,7 @@ namespace entityframeworkrepository
 
         [Column(@"UpdatedBy", Order = 5, TypeName = "int")]
         [Display(Name = "Updated by")]
-        public int? UpdatedBy { get; set; } // UpdatedBy
+        public System.Nullable<int> UpdatedBy { get; set; } // UpdatedBy
 
         [Column(@"CreatedBy", Order = 6, TypeName = "int")]
         [Required]
@@ -72,6 +74,7 @@ namespace entityframeworkrepository
         public bool IsDeclined { get; set; } // IsDeclined
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("StageId")] public virtual Stage Stage { get; set; } // FK_Pipeline_Stage
 
         public Pipeline()

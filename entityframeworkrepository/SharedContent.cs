@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // SharedContent
@@ -34,19 +36,19 @@ namespace entityframeworkrepository
 
         [Column(@"JobFormResultID", Order = 2, TypeName = "int")]
         [Display(Name = "Job form result ID")]
-        public int? JobFormResultId { get; set; } // JobFormResultID
+        public System.Nullable<int> JobFormResultId { get; set; } // JobFormResultID
 
         [Column(@"ShareContentTypeID", Order = 3, TypeName = "int")]
         [Display(Name = "Share content type ID")]
-        public int? ShareContentTypeId { get; set; } // ShareContentTypeID
+        public System.Nullable<int> ShareContentTypeId { get; set; } // ShareContentTypeID
 
         [Column(@"AllowComment", Order = 4, TypeName = "tinyint")]
         [Display(Name = "Allow comment")]
-        public byte? AllowComment { get; set; } // AllowComment
+        public System.Nullable<byte> AllowComment { get; set; } // AllowComment
 
         [Column(@"ShowTimeLineEvaluation", Order = 5, TypeName = "tinyint")]
         [Display(Name = "Show time line evaluation")]
-        public byte? ShowTimeLineEvaluation { get; set; } // ShowTimeLineEvaluation
+        public System.Nullable<byte> ShowTimeLineEvaluation { get; set; } // ShowTimeLineEvaluation
 
         [Column(@"ShareContentMessage", Order = 6, TypeName = "varchar")]
         [MaxLength(100)]
@@ -62,7 +64,7 @@ namespace entityframeworkrepository
 
         [Column(@"ShareContentWith", Order = 8, TypeName = "int")]
         [Display(Name = "Share content with")]
-        public int? ShareContentWith { get; set; } // ShareContentWith
+        public System.Nullable<int> ShareContentWith { get; set; } // ShareContentWith
 
         [Column(@"UpdatedBy", Order = 9, TypeName = "int")]
         [Required]

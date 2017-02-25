@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // JobFormResultDetail
@@ -51,11 +53,11 @@ namespace entityframeworkrepository
 
         [Column(@"SchoolStart", Order = 5, TypeName = "int")]
         [Display(Name = "School start")]
-        public int? SchoolStart { get; set; } // SchoolStart
+        public System.Nullable<int> SchoolStart { get; set; } // SchoolStart
 
         [Column(@"SchoolEnd", Order = 6, TypeName = "int")]
         [Display(Name = "School end")]
-        public int? SchoolEnd { get; set; } // SchoolEnd
+        public System.Nullable<int> SchoolEnd { get; set; } // SchoolEnd
 
         [Column(@"SchoolFieldOfStudy", Order = 7, TypeName = "varchar")]
         [MaxLength(100)]
@@ -95,15 +97,15 @@ namespace entityframeworkrepository
 
         [Column(@"IsCurrentWork", Order = 13, TypeName = "bit")]
         [Display(Name = "Is current work")]
-        public bool? IsCurrentWork { get; set; } // IsCurrentWork
+        public System.Nullable<bool> IsCurrentWork { get; set; } // IsCurrentWork
 
         [Column(@"ExperienceStart", Order = 14, TypeName = "int")]
         [Display(Name = "Experience start")]
-        public int? ExperienceStart { get; set; } // ExperienceStart
+        public System.Nullable<int> ExperienceStart { get; set; } // ExperienceStart
 
         [Column(@"ExperienceEnd", Order = 15, TypeName = "int")]
         [Display(Name = "Experience end")]
-        public int? ExperienceEnd { get; set; } // ExperienceEnd
+        public System.Nullable<int> ExperienceEnd { get; set; } // ExperienceEnd
 
         [Column(@"UpdatedBy", Order = 16, TypeName = "int")]
         [Required]

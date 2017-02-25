@@ -7,7 +7,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +15,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     using System.Linq;
@@ -40,6 +43,7 @@ namespace entityframeworkrepository
         public System.Data.Entity.DbSet<JobFormResult> JobFormResults { get; set; } // JobFormResult
         public System.Data.Entity.DbSet<JobFormResultDetail> JobFormResultDetails { get; set; } // JobFormResultDetail
         public System.Data.Entity.DbSet<JobFormResultQa> JobFormResultQas { get; set; } // JobFormResultQA
+        public System.Data.Entity.DbSet<JobFormResultsView> JobFormResultsViews { get; set; } // JobFormResultsView
         public System.Data.Entity.DbSet<JobFormResultX> JobFormResultXes { get; set; } // JobFormResultX
         public System.Data.Entity.DbSet<Person> People { get; set; } // Person
         public System.Data.Entity.DbSet<Pipeline> Pipelines { get; set; } // Pipeline
@@ -122,6 +126,7 @@ namespace entityframeworkrepository
             modelBuilder.Configurations.Add(new JobFormResultConfiguration());
             modelBuilder.Configurations.Add(new JobFormResultDetailConfiguration());
             modelBuilder.Configurations.Add(new JobFormResultQaConfiguration());
+            modelBuilder.Configurations.Add(new JobFormResultsViewConfiguration());
             modelBuilder.Configurations.Add(new JobFormResultXConfiguration());
             modelBuilder.Configurations.Add(new PersonConfiguration());
             modelBuilder.Configurations.Add(new PipelineConfiguration());
@@ -155,6 +160,7 @@ namespace entityframeworkrepository
             modelBuilder.Configurations.Add(new JobFormResultConfiguration(schema));
             modelBuilder.Configurations.Add(new JobFormResultDetailConfiguration(schema));
             modelBuilder.Configurations.Add(new JobFormResultQaConfiguration(schema));
+            modelBuilder.Configurations.Add(new JobFormResultsViewConfiguration(schema));
             modelBuilder.Configurations.Add(new JobFormResultXConfiguration(schema));
             modelBuilder.Configurations.Add(new PersonConfiguration(schema));
             modelBuilder.Configurations.Add(new PipelineConfiguration(schema));

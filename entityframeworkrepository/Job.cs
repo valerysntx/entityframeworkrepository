@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Job
@@ -58,11 +60,11 @@ namespace entityframeworkrepository
 
         [Column(@"JobStatusID", Order = 6, TypeName = "int")]
         [Display(Name = "Job status ID")]
-        public int? JobStatusId { get; set; } // JobStatusID
+        public System.Nullable<int> JobStatusId { get; set; } // JobStatusID
 
         [Column(@"CountryID", Order = 7, TypeName = "int")]
         [Display(Name = "Country ID")]
-        public int? CountryId { get; set; } // CountryID
+        public System.Nullable<int> CountryId { get; set; } // CountryID
 
         [Column(@"City", Order = 8, TypeName = "varchar")]
         [MaxLength(20)]
@@ -72,7 +74,7 @@ namespace entityframeworkrepository
 
         [Column(@"IsRemoteJob", Order = 9, TypeName = "tinyint")]
         [Display(Name = "Is remote job")]
-        public byte? IsRemoteJob { get; set; } // IsRemoteJob
+        public System.Nullable<byte> IsRemoteJob { get; set; } // IsRemoteJob
 
         [Column(@"JobRequirement", Order = 10, TypeName = "varchar")]
         [MaxLength(200)]
@@ -88,19 +90,19 @@ namespace entityframeworkrepository
 
         [Column(@"InHouseOrAgency", Order = 12, TypeName = "tinyint")]
         [Display(Name = "In house or agency")]
-        public byte? InHouseOrAgency { get; set; } // InHouseOrAgency
+        public System.Nullable<byte> InHouseOrAgency { get; set; } // InHouseOrAgency
 
         [Column(@"EmploymentTypeID", Order = 13, TypeName = "int")]
         [Display(Name = "Employment type ID")]
-        public int? EmploymentTypeId { get; set; } // EmploymentTypeID
+        public System.Nullable<int> EmploymentTypeId { get; set; } // EmploymentTypeID
 
         [Column(@"ExperienceID", Order = 14, TypeName = "int")]
         [Display(Name = "Experience ID")]
-        public int? ExperienceId { get; set; } // ExperienceID
+        public System.Nullable<int> ExperienceId { get; set; } // ExperienceID
 
         [Column(@"Education", Order = 15, TypeName = "int")]
         [Display(Name = "Education")]
-        public int? Education { get; set; } // Education
+        public System.Nullable<int> Education { get; set; } // Education
 
         [Column(@"JobKeywords", Order = 16, TypeName = "varchar")]
         [MaxLength(50)]
@@ -110,27 +112,27 @@ namespace entityframeworkrepository
 
         [Column(@"SalaryFrom", Order = 17, TypeName = "int")]
         [Display(Name = "Salary from")]
-        public int? SalaryFrom { get; set; } // SalaryFrom
+        public System.Nullable<int> SalaryFrom { get; set; } // SalaryFrom
 
         [Column(@"SalaryTo", Order = 18, TypeName = "int")]
         [Display(Name = "Salary to")]
-        public int? SalaryTo { get; set; } // SalaryTo
+        public System.Nullable<int> SalaryTo { get; set; } // SalaryTo
 
         [Column(@"CurrencyID", Order = 19, TypeName = "int")]
         [Display(Name = "Currency ID")]
-        public int? CurrencyId { get; set; } // CurrencyID
+        public System.Nullable<int> CurrencyId { get; set; } // CurrencyID
 
         [Column(@"PersonID", Order = 20, TypeName = "int")]
         [Display(Name = "Person ID")]
-        public int? PersonId { get; set; } // PersonID
+        public System.Nullable<int> PersonId { get; set; } // PersonID
 
         [Column(@"IsDeleted", Order = 21, TypeName = "tinyint")]
         [Display(Name = "Is deleted")]
-        public byte? IsDeleted { get; set; } // IsDeleted
+        public System.Nullable<byte> IsDeleted { get; set; } // IsDeleted
 
         [Column(@"IsVisible", Order = 22, TypeName = "tinyint")]
         [Display(Name = "Is visible")]
-        public byte? IsVisible { get; set; } // IsVisible
+        public System.Nullable<byte> IsVisible { get; set; } // IsVisible
 
         [Column(@"UpdatedBy", Order = 23, TypeName = "int")]
         [Required]
@@ -153,14 +155,16 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Reverse navigation
+        [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<JobForm> JobForms { get; set; } // JobForm.FK_JobForm_Job
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("PersonId")] public virtual Person Person { get; set; } // FK_Job_Person
 
         public Job()
         {
-            JobForms = new System.Collections.Generic.List<JobForm>();
+            JobForms = new ObservableCollection<JobForm>();
             InitializePartial();
         }
 

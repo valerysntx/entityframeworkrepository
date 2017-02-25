@@ -7,16 +7,18 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using entityframeworkrepository.core.entity;
 
 namespace entityframeworkrepository
 {
-    using entityframeworkrepository.core;
+    using entityframeworkrepository;
+    using entityframeworkrepository.core.entity;
+    using Newtonsoft.Json;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     // Department
@@ -67,7 +69,9 @@ namespace entityframeworkrepository
         public System.DateTime DateUpdated { get; set; } // DateUpdated
 
         // Foreign keys
+        [JsonIgnore]
         [ForeignKey("CompanyId")] public virtual Company Company { get; set; } // FK_Department_Company
+        [JsonIgnore]
         [ForeignKey("PersonId")] public virtual Person Person { get; set; } // FK_Department_Person
 
         public Department()

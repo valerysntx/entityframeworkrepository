@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using entityframeworkrepository.core.entity;
+using entityframeworkrepository.core.query;
 
 namespace entityframeworkrepository.core.repository
 {
-    public interface IGenericDataRepository<T> where T : BaseEntity
+    public interface IGenericDataRepository<T>: IDbQuery<T> where T : class
     {
         IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
