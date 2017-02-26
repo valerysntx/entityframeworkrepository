@@ -38,9 +38,10 @@ namespace entityframeworkrepository
         public Locator()
         {
             _container = new Container();
-            RegisterDefaults((_container) =>
+            RegisterDefaults(c =>
             {
-                        // Register here the default bindings
+
+                // Register here the default bindings
             });
         }
 
