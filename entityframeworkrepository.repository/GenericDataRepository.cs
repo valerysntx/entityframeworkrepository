@@ -201,6 +201,24 @@ namespace entityframeworkrepository.repository
             return last;
         }
 
+
+        public IList<T> GetOrderedList(Func<T, bool> where,
+          Expression<Func<T, object>>[] navExpressions,
+          params Expression<Func<T, object>>[] props)
+        {
+            return GetList(where, navExpressions).AsEnumerable().OrderBy(props.ToArray()).ToList();
+        }
+
+        public IList<T> GetOrderedListDesc(Func<T, bool> where,
+         Expression<Func<T, object>>[] navExpressions,
+         params Expression<Func<T, object>>[] props)
+        {
+            return GetList(where, navExpressions).AsEnumerable().OrderByDescending(props.ToArray()).ToList();
+        }
+
+
+
+
         public void Save()
         {
             _entities.SaveChanges();
