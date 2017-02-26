@@ -144,13 +144,16 @@ namespace entityframeworkrepository.repository
                     var dbSet = _entities.Set<T>();
                     foreach (var item in items)
                     {
-                        last = dbSet.Attach(item) ?? dbSet.Add(item);
+                        last = dbSet.Add(item);
 
                     /*
                      *  cache invalidation via read...
                      */
 
-                        last = dbSet.Local.AsQueryable().FromCache( (CachePolicy) CachePolicy.WithDurationExpiration(TimeSpan.Zero)).FirstOrDefault() ?? last;
+                        last = dbSet.Local.AsQueryable().AsNoTracking()
+                                          .FromCache( (CachePolicy) CachePolicy.Default)
+                                          .FirstOrDefault()
+                               ?? last;
 
                         foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
                         {

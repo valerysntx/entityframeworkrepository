@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Castle.Core.Internal;
+using entityframeworkrepository.cache;
 using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.core.service;
@@ -23,6 +24,11 @@ namespace entityframeworkrepository.tests
         [SetUp]
         public void Initialize()
         {
+            var container = new Container();
+
+            Locator.SetContainer(container);
+            Locator.Current.Register<ICacheProvider>(()=> new MemoryCacheProvider());
+
             _serviceMock = new Mock<IEntityService<BaseEntity>>();
         }
 
@@ -80,7 +86,7 @@ namespace entityframeworkrepository.tests
                 UpdatedBy = 1,
                 IsDeleted = false,
                 DictionaryTypeId = 20
-               
+
             };
 
             var ctx = new WorkBenchContext();
