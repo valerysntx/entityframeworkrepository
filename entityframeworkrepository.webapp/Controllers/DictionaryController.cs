@@ -25,10 +25,10 @@ namespace entityframeworkrepository.webapp.Controllers
         }
 
 
-        public DictionaryController(IGenericDataRepository<Dictionary> repository, IWorkBenchContext ctx)
+        public DictionaryController(IGenericCacheRepository<Dictionary> repository, IWorkBenchContext ctx)
         {
             _ctx = ctx ?? new WorkBenchContext();
-            if (repository == null) repository = new DictionaryRepository((DbContext) _ctx);
+            if (repository == null) _repository = new DictionaryRepository((DbContext)_ctx);
             _repository = repository;
         }
 
