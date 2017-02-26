@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[JobForm] (
+    [JobFormID]         INT           IDENTITY (1, 1) NOT NULL,
+    [JobID]             INT           NOT NULL,
+    [ShowFirstName]     BIT           NOT NULL,
+    [ShowLastName]      BIT           NOT NULL,
+    [ShowEmail]         BIT           NOT NULL,
+    [ShowHeadline]      BIT           NOT NULL,
+    [ShowTelephone]     BIT           NOT NULL,
+    [ShowAddress]       BIT           NOT NULL,
+    [ShowPhoto]         BIT           NOT NULL,
+    [ShowVideo]         BIT           NOT NULL,
+    [ShowEducation]     BIT           NOT NULL,
+    [ShowExperience]    BIT           NOT NULL,
+    [ShowSummary]       BIT           NOT NULL,
+    [ShowCV]            BIT           NOT NULL,
+    [ShowCoverLetter]   BIT           NOT NULL,
+    [QuestionAnswerXML] VARCHAR (MAX) NULL,
+    [UpdatedBy]         INT           NOT NULL,
+    [CreatedBy]         INT           NOT NULL,
+    [DateAdded]         DATETIME      NOT NULL,
+    [DateUpdated]       DATETIME      NOT NULL,
+    CONSTRAINT [PK_JobForm] PRIMARY KEY CLUSTERED ([JobFormID] ASC),
+    CONSTRAINT [FK_JobForm_Job] FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([JobID]) NOT FOR REPLICATION
+);
+
