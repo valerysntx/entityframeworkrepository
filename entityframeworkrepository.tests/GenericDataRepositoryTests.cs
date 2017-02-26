@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using entityframeworkrepository.cache;
+using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.repository;
 using NUnit.Framework;
@@ -14,20 +15,21 @@ namespace entityframeworkrepository.tests
         [Test]
         public void Should_Create_GenericDataRepository_Instance()
         {
-          IGenericDataRepository<Person> repository = new GenericDataRepository<Person>((DbContext)new WorkBenchContext());
-          Assert.That(repository, Is.Not.Null);
+            IGenericDataRepository<Person> repository =
+                new GenericDataRepository<Person>((DbContext) new WorkBenchContext());
+            Assert.That(repository, Is.Not.Null);
         }
 
 
         /// <summary>
         /// Persisting 3 people
         /// </summary>
-        public class PersonRepository: GenericDataRepository<Person>
+        public class PersonRepository : GenericDataRepository<Person>
         {
             /// <summary>
             /// PersonRepository
             /// </summary>
-            public PersonRepository() : base((DbContext)new WorkBenchContext())
+            public PersonRepository() : base((DbContext) new WorkBenchContext())
             {
                 Add(new Person[] {new Person(), new Person(), new Person()});
                 Save();
@@ -43,14 +45,14 @@ namespace entityframeworkrepository.tests
             public DictionaryCacheRepository(DbContext context) : base(context)
             {
                 Locator.SetContainer(new Container());
-                Locator.Current.Register<ICacheProvider>(()=> new MemoryCacheProvider());
+                Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
             }
         }
 
         [Test]
         public void Should_Add_Entity_CacheRepository()
         {
-           var cache = new DictionaryCacheRepository(new WorkBenchContext());
+            var cache = new DictionaryCacheRepository(new WorkBenchContext());
             cache.Add(
                 new Dictionary
                 {
@@ -71,7 +73,7 @@ namespace entityframeworkrepository.tests
                 });
             cache.Save();
 
-            Assert.That(cache.GetSingle(x=>x.Code == 100), Is.Not.Null);
+            Assert.That(cache.GetSingle(x => x.Code == 100), Is.Not.Null);
 
         }
 
@@ -95,10 +97,10 @@ namespace entityframeworkrepository.tests
         {
             var cache = new DictionaryCacheRepository(new WorkBenchContext());
             var dictionary = new Dictionary() {Code = 100};
-             cache.Remove(dictionary);
-             cache.Save();
+            cache.Remove(dictionary);
+            cache.Save();
 
-             Assert.False( cache.GetAll().Contains(dictionary) );
+            Assert.False(cache.GetAll().Contains(dictionary));
         }
 
         [Test]
@@ -113,11 +115,34 @@ namespace entityframeworkrepository.tests
         public void Should_Do_Paged_Sets_Properly()
         {
             var people = new PersonRepository()
-                            .GetPagedList( x => x != null, 1, 2, person => person.Departments);
-            Assert.That(people,Is.Not.Null.Or.Empty);
+                .GetPagedList(x => x != null, 1, 2, person => person.Departments);
+            Assert.That(people, Is.Not.Null.Or.Empty);
             Assert.That(people.Count, Is.EqualTo(2));
         }
 
 
+        [Test]
+        public void Should_Do_JobFormResultsView_Complex_Query()
+        {
+            var jobFormResultsViewRepository = new GenericCacheRepository<JobFormResultsView>(new WorkBenchContext());
+            var result = jobFormResultsViewRepository.GetAll();
+            Assert.That(result, Is.Not.Null.Or.Empty);
+        }
+
+        [Test]
+        public void Should_Do_JobFormResultsView_Join_Linq_Query()
+        {
+            using (var ctx = new WorkBenchContext())
+            {
+                Locator.SetContainer(new Container());
+                Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
+                var jobFormResultsViewRepository = new GenericCacheRepository<JobFormResultsView>(ctx);
+
+                var result = jobFormResultsViewRepository.GetAll();
+                Assert.That(result, Is.Not.Null.Or.Empty);
+            }
+
+        }
     }
+
 }
