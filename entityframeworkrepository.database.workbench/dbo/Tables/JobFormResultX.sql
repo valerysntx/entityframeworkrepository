@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[JobFormResultX] (
+    [JobFormResultID]       INT           IDENTITY (1, 1) NOT NULL,
+    [JobFormID]             INT           NOT NULL,
+    [CandidateID]           INT           NOT NULL,
+    [FirstName]             VARCHAR (50)  NOT NULL,
+    [LastName]              VARCHAR (50)  NOT NULL,
+    [Email]                 VARCHAR (50)  NOT NULL,
+    [Headline]              VARCHAR (50)  NOT NULL,
+    [Telephone]             VARCHAR (50)  NOT NULL,
+    [Address]               VARCHAR (50)  NOT NULL,
+    [Photo]                 VARCHAR (100) NOT NULL,
+    [Video]                 VARCHAR (100) NOT NULL,
+    [Summary]               VARCHAR (200) NOT NULL,
+    [CVBankID]              INT           NOT NULL,
+    [Source]                VARCHAR (50)  NULL,
+    [Referer]               VARCHAR (150) NOT NULL,
+    [IsRead]                TINYINT       NULL,
+    [IsDeleted]             TINYINT       NULL,
+    [AdminBlock]            TINYINT       NULL,
+    [ISCoverLetterIncluded] TINYINT       NOT NULL,
+    [QuestionAnswerXML]     VARCHAR (MAX) NULL,
+    [UpdatedBy]             INT           NOT NULL,
+    [CreatedBy]             INT           NOT NULL,
+    [DateAdded]             DATETIME      NOT NULL,
+    [DateUpdated]           DATETIME      NOT NULL
+);
+

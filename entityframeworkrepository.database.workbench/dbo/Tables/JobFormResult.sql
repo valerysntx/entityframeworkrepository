@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[JobFormResult] (
+    [JobFormResultID]       INT           IDENTITY (1, 1) NOT NULL,
+    [JobFormID]             INT           NULL,
+    [CandidateID]           INT           NULL,
+    [FirstName]             VARCHAR (50)  NULL,
+    [LastName]              VARCHAR (50)  NULL,
+    [Email]                 VARCHAR (50)  NULL,
+    [Headline]              VARCHAR (50)  NULL,
+    [Telephone]             VARCHAR (50)  NULL,
+    [Address]               VARCHAR (50)  NULL,
+    [Photo]                 VARCHAR (100) NULL,
+    [Video]                 VARCHAR (100) NULL,
+    [Summary]               VARCHAR (200) NULL,
+    [CVBankID]              INT           NULL,
+    [Source]                VARCHAR (50)  NULL,
+    [Referer]               VARCHAR (150) NOT NULL,
+    [IsRead]                INT           NULL,
+    [IsDeleted]             INT           NULL,
+    [AdminBlock]            INT           NULL,
+    [ISCoverLetterIncluded] INT           NULL,
+    [QuestionAnswerXML]     VARCHAR (MAX) NULL,
+    [UpdatedBy]             INT           NULL,
+    [CreatedBy]             INT           NULL,
+    [DateAdded]             DATETIME      NULL,
+    [DateUpdated]           DATETIME      NULL,
+    CONSTRAINT [PK_JobFormResult] PRIMARY KEY CLUSTERED ([JobFormResultID] ASC)
+);
+
