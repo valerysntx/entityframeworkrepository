@@ -150,9 +150,9 @@ namespace entityframeworkrepository.repository
                      *  cache invalidation via read...
                      */
 
-                    last = dbSet.Local.AsQueryable().FromCache(/* CachePolicy.Default */).FirstOrDefault() ?? last;
+                        last = dbSet.Local.AsQueryable().FromCache( (CachePolicy) CachePolicy.WithDurationExpiration(TimeSpan.Zero)).FirstOrDefault() ?? last;
 
-                        foreach (var entry in _entities.ChangeTracker.Entries<BaseEntity>())
+                        foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
                         {
                             var entity = entry.Entity;
                             entry.State = GetEntityState(entry.State);
