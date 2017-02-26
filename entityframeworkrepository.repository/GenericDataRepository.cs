@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
-using System.Data.Entity.Core.Objects.DataClasses;
+using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-
 using entityframeworkrepository.cache;
 using entityframeworkrepository.cache.Extentions;
 using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.query;
 using entityframeworkrepository.core.repository;
 
 namespace entityframeworkrepository.repository
@@ -32,6 +30,11 @@ namespace entityframeworkrepository.repository
         {
             if (context == null) throw new ArgumentNullException("@context");
             _entities = context;
+
+            _entities.Configuration.AutoDetectChangesEnabled = false;
+            _entities.Configuration.ProxyCreationEnabled = false;
+            _entities.Configuration.ValidateOnSaveEnabled = true;
+
             _dbset = context.Set<T>();
         }
 
@@ -139,7 +142,8 @@ namespace entityframeworkrepository.repository
                 var dbSet = _entities.Set<T>();
                 foreach (var item in items)
                 {
-                    last = dbSet.Add(item);
+                    last = item;
+                    dbSet.AddOrUpdate(item);
                     UpdatedCreatedTimestamp();
                 }
 
@@ -161,7 +165,7 @@ namespace entityframeworkrepository.repository
                     var dbSet = _entities.Set<T>();
                     foreach (var item in items)
                     {
-                        last = dbSet.Attach(item);
+                        dbSet.AddOrUpdate(item);
                         UpdatedCreatedTimestamp();
                     }
 
@@ -181,10 +185,11 @@ namespace entityframeworkrepository.repository
             try
             {
                 var dbSet = _entities.Set<T>();
+
                 foreach (var item in items)
                 {
-                    last = dbSet.Remove(item);
-                    UpdatedCreatedTimestamp();
+                   dbSet.Local.Remove(item);
+                   UpdatedCreatedTimestamp();
                 }
 
                 Save();
@@ -193,7 +198,6 @@ namespace entityframeworkrepository.repository
             {
                 throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
             }
-
             return last;
         }
 
@@ -202,6 +206,15 @@ namespace entityframeworkrepository.repository
             _entities.SaveChanges();
         }
 
+        protected static EntityState GetEntityState(EntityState entityState)
+        {
+            return entityState;
+        }
+
+
+        /// <summary>
+        /// IAuditableEntity timestamps
+        /// </summary>
         private void UpdatedCreatedTimestamp()
         {
             foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
@@ -222,10 +235,6 @@ namespace entityframeworkrepository.repository
             }
         }
 
-        protected static EntityState GetEntityState(EntityState entityState)
-        {
-            return entityState;
-        }
 
     }
 }
