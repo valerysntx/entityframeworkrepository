@@ -133,8 +133,39 @@ namespace entityframeworkrepository.repository
 
        public virtual T Add(params T[] items)
        {
-           return Update(items);
-       }
+            T last = null;
+            try
+            {
+                var dbSet = _entities.Set<T>();
+                foreach (var item in items)
+                {
+                    last = dbSet.Add(item);
+
+                    foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
+                    {
+                        var entity = entry.Entity;
+                        entry.State = GetEntityState(entry.State);
+                        if (entry.State == EntityState.Added)
+                        {
+                            entity.CreatedDate = DateTime.Now;
+                            entry.Entity.UpdatedDate = DateTime.Now;
+                        }
+                        if (entry.State == EntityState.Modified)
+                        {
+                            entry.Entity.UpdatedDate = DateTime.Now;
+                        }
+                    }
+                }
+
+                Save();
+            }
+            catch (SqlException ex)
+            {
+                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
+            }
+
+            return last;
+        }
 
         public virtual T Update(params T[] items)
         {
@@ -144,29 +175,22 @@ namespace entityframeworkrepository.repository
                     var dbSet = _entities.Set<T>();
                     foreach (var item in items)
                     {
-                        last = dbSet.Add(item);
-
-                    /*
-                     *  cache invalidation via read...
-                     */
-
-                        last = dbSet.Local.AsQueryable().AsNoTracking()
-                                          .FromCache( (CachePolicy) CachePolicy.Default)
-                                          .FirstOrDefault()
-                               ?? last;
+                        last = dbSet.Attach(item);
 
                         foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
                         {
                             var entity = entry.Entity;
+                            if (entity == null) continue;
+
                             entry.State = GetEntityState(entry.State);
                             if (entry.State == EntityState.Added)
                             {
-                                entry.Entity.CreatedDate = DateTime.Now;
-                                entry.Entity.UpdatedDate = DateTime.Now;
+                                entity.CreatedDate = DateTime.Now;
+                                entity.UpdatedDate = DateTime.Now;
                             }
                             if (entry.State == EntityState.Modified)
                             {
-                                entry.Entity.UpdatedDate = DateTime.Now;
+                                entity.UpdatedDate = DateTime.Now;
                             }
                         }
                     }
@@ -183,8 +207,40 @@ namespace entityframeworkrepository.repository
 
         public T Remove(params T[] items)
         {
-            Update(items);
-            return null;
+            T last = null;
+            try
+            {
+                var dbSet = _entities.Set<T>();
+                foreach (var item in items)
+                {
+                    last = dbSet.Remove(item);
+
+                    foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
+                    {
+                        var entity = entry.Entity;
+                        if (entity == null) continue;
+
+                        entry.State = GetEntityState(entry.State);
+                        if (entry.State == EntityState.Added)
+                        {
+                            entity.CreatedDate = DateTime.Now;
+                            entity.UpdatedDate = DateTime.Now;
+                        }
+                        if (entry.State == EntityState.Modified)
+                        {
+                            entity.UpdatedDate = DateTime.Now;
+                        }
+                    }
+                }
+
+                Save();
+            }
+            catch (SqlException ex)
+            {
+                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
+            }
+
+            return last;
         }
 
         public void Save()
