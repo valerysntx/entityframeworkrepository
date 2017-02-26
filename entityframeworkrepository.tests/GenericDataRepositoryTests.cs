@@ -6,6 +6,7 @@ using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.repository;
 using entityframeworkrepository.repository;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace entityframeworkrepository.tests
 {
@@ -127,6 +128,16 @@ namespace entityframeworkrepository.tests
             var jobFormResultsViewRepository = new GenericCacheRepository<JobFormResultsView>(new WorkBenchContext());
             var result = jobFormResultsViewRepository.GetAll();
             Assert.That(result, Is.Not.Null.Or.Empty);
+        }
+
+        [Test]
+        public void Should_Do_JobFormResultsView_Complex_Query_Paged()
+        {
+            var jobFormResultsViewRepository = new GenericCacheRepository<JobFormResultsView>(new WorkBenchContext());
+            var result = jobFormResultsViewRepository.GetPagedList(x=>x!=null,0, 1);
+
+            Assert.That(result, Is.Not.Null.Or.Empty);
+            Assert.That(result.Count, Is.EqualTo(1));
         }
 
         [Test]
