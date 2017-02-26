@@ -140,21 +140,7 @@ namespace entityframeworkrepository.repository
                 foreach (var item in items)
                 {
                     last = dbSet.Add(item);
-
-                    foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
-                    {
-                        var entity = entry.Entity;
-                        entry.State = GetEntityState(entry.State);
-                        if (entry.State == EntityState.Added)
-                        {
-                            entity.CreatedDate = DateTime.Now;
-                            entry.Entity.UpdatedDate = DateTime.Now;
-                        }
-                        if (entry.State == EntityState.Modified)
-                        {
-                            entry.Entity.UpdatedDate = DateTime.Now;
-                        }
-                    }
+                    UpdatedCreatedTimestamp();
                 }
 
                 Save();
@@ -176,23 +162,7 @@ namespace entityframeworkrepository.repository
                     foreach (var item in items)
                     {
                         last = dbSet.Attach(item);
-
-                        foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
-                        {
-                            var entity = entry.Entity;
-                            if (entity == null) continue;
-
-                            entry.State = GetEntityState(entry.State);
-                            if (entry.State == EntityState.Added)
-                            {
-                                entity.CreatedDate = DateTime.Now;
-                                entity.UpdatedDate = DateTime.Now;
-                            }
-                            if (entry.State == EntityState.Modified)
-                            {
-                                entity.UpdatedDate = DateTime.Now;
-                            }
-                        }
+                        UpdatedCreatedTimestamp();
                     }
 
                 Save();
@@ -214,23 +184,7 @@ namespace entityframeworkrepository.repository
                 foreach (var item in items)
                 {
                     last = dbSet.Remove(item);
-
-                    foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
-                    {
-                        var entity = entry.Entity;
-                        if (entity == null) continue;
-
-                        entry.State = GetEntityState(entry.State);
-                        if (entry.State == EntityState.Added)
-                        {
-                            entity.CreatedDate = DateTime.Now;
-                            entity.UpdatedDate = DateTime.Now;
-                        }
-                        if (entry.State == EntityState.Modified)
-                        {
-                            entity.UpdatedDate = DateTime.Now;
-                        }
-                    }
+                    UpdatedCreatedTimestamp();
                 }
 
                 Save();
@@ -248,11 +202,25 @@ namespace entityframeworkrepository.repository
             _entities.SaveChanges();
         }
 
-        public T Attach(T entity)
+        private void UpdatedCreatedTimestamp()
         {
-            return _entities.Set<T>().Attach(entity);
-        }
+            foreach (var entry in _entities.ChangeTracker.Entries<IAuditableEntity>())
+            {
+                var entity = entry.Entity;
+                if (entity == null) continue;
 
+                entry.State = GetEntityState(entry.State);
+                if (entry.State == EntityState.Added)
+                {
+                    entity.CreatedDate = DateTime.Now;
+                    entity.UpdatedDate = DateTime.Now;
+                }
+                if (entry.State == EntityState.Modified)
+                {
+                    entity.UpdatedDate = DateTime.Now;
+                }
+            }
+        }
 
         protected static EntityState GetEntityState(EntityState entityState)
         {
