@@ -18,9 +18,9 @@ namespace entityframeworkrepository
     using entityframeworkrepository;
     using entityframeworkrepository.core.entity;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
-
     using System.Linq;
 
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.27.0.0")]
@@ -119,9 +119,10 @@ namespace entityframeworkrepository
             Dispose(true);
         }
 
-        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker { get; }
-        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
-        public System.Data.Entity.Database Database { get; }
+        public System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker { get { throw new NotImplementedException(); } }
+        public System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get { throw new NotImplementedException(); } }
+        public System.Data.Entity.Database Database { get { throw new NotImplementedException(); } }
+   
         public System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
             throw new System.NotImplementedException();
