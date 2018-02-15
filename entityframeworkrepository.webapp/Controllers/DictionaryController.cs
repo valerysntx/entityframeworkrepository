@@ -6,7 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
+using entityframeworkrepository.repository;
+using entityframeworkrepository.repository.cache;
 using entityframeworkrepository.webapp.Repository;
 using Dictionary = entityframeworkrepository.Dictionary;
 

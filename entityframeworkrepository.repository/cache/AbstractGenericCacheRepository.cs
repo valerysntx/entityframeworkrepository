@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
 
-namespace entityframeworkrepository.repository
+
+namespace entityframeworkrepository.repository.cache
 {
     /// <summary>
     /// AbstractGenericCacheRepository<typeparam name="T">Entity</typeparam>

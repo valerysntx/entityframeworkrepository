@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.Remoting.Channels;
 using entityframeworkrepository.cache.Query;
 
 namespace entityframeworkrepository.cache.Extentions
@@ -88,6 +87,7 @@ namespace entityframeworkrepository.cache.Extentions
         public static TEntity FromCacheFirstOrDefault<TEntity>(this IQueryable<TEntity> query, CachePolicy cachePolicy = null, IEnumerable<string> tags = null)
             where TEntity : class
         {
+            // ReSharper disable once PossibleUnintendedQueryableAsEnumerable
             return query.Take(1).FromCache(cachePolicy, tags).FirstOrDefault();
         }
 

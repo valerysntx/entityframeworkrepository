@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+
 using entityframeworkrepository.cache;
-using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
 using entityframeworkrepository.repository;
+using entityframeworkrepository.repository.cache;
+
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 

@@ -56,8 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractGenericCacheRepository.cs" />
-    <Compile Include="GenericCacheRepository.cs" />
+    <Compile Include="cache\AbstractGenericCacheRepository.cs" />
+    <Compile Include="cache\GenericCacheRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenericDataRepository.cs" />
   </ItemGroup>

@@ -6,10 +6,10 @@ using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-using entityframeworkrepository.cache;
+
 using entityframeworkrepository.cache.Extentions;
 using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
+
 
 namespace entityframeworkrepository.repository
 {
@@ -28,7 +28,7 @@ namespace entityframeworkrepository.repository
         /// <param name="context"></param>
         public GenericDataRepository(DbContext context)
         {
-            if (context == null) throw new ArgumentNullException("@context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             _entities = context;
 
             _entities.Configuration.AutoDetectChangesEnabled = false;

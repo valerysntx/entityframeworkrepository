@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 using entityframeworkrepository.core.entity;
 using entityframeworkrepository.core.query;
 
-namespace entityframeworkrepository.core.repository
+// ReSharper disable once CheckNamespace
+namespace entityframeworkrepository.repository
 {
     public interface IGenericDataRepository<T>: IDbQuery<T> where T : class
     {

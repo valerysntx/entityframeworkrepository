@@ -7,9 +7,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using entityframeworkrepository.cache;
 using entityframeworkrepository.cache.Extentions;
-using entityframeworkrepository.core.repository;
 
-namespace entityframeworkrepository.repository
+namespace entityframeworkrepository.repository.cache
 {
 
     /// <summary>
@@ -41,7 +40,7 @@ namespace entityframeworkrepository.repository
             }
             catch (SqlException ex)
             {
-                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
+                throw new EntityException($"{typeof(T)} - {ex.Message}", ex);
             }
 
             return list;
@@ -60,7 +59,7 @@ namespace entityframeworkrepository.repository
             }
             catch (SqlException ex)
             {
-                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
+                throw new EntityException($"{typeof(T)} - {ex.Message}", ex);
             }
 
             return list;
@@ -75,14 +74,15 @@ namespace entityframeworkrepository.repository
                 IQueryable<T> dbQuery = _entities.Set<T>();
 
                 //Apply eager loading
-                dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => current.Include(navigationProperty));
+                dbQuery = navigationProperties.Aggregate(dbQuery, (current, navigationProperty) => 
+                                                                   current.Include(navigationProperty));
 
                 item = FromCache(ToQueryable(dbQuery)).FirstOrDefault(where);
 
             }
             catch (SqlException ex)
             {
-                throw new EntityException(string.Format("{0} - {1}", typeof(T), ex.Message), ex);
+                throw new EntityException($"{typeof(T)} - {ex.Message}", ex);
             }
 
             return item;

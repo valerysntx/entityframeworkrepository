@@ -1,5 +1,3 @@
-using System;
-
 namespace entityframeworkrepository.cache
 {
     /// <summary>

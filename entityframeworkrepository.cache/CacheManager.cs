@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using entityframeworkrepository.core;
 
 namespace entityframeworkrepository.cache
 {
@@ -27,7 +28,11 @@ namespace entityframeworkrepository.cache
     /// </example>
     public class CacheManager
     {
-        private static readonly Lazy<CacheManager> _current = new Lazy<CacheManager>(() => new CacheManager());
+        private static readonly Lazy<CacheManager> @current = new Lazy<CacheManager>(() => new CacheManager());
+
+        public CacheManager()
+        {
+        }
 
         /// <summary>
         /// Gets the current singleton instance of <see cref="CacheManager"/>.
@@ -35,7 +40,7 @@ namespace entityframeworkrepository.cache
         /// <value>The current singleton instance.</value>
         public static CacheManager Current
         {
-            get { return _current.Value; }
+            get { return @current.Value; }
         }
 
         /// <summary>

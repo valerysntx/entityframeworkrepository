@@ -1,4 +1,4 @@
-namespace entityframeworkrepository.core.repository
+namespace entityframeworkrepository.repository.cache
 {
     /// <summary>
     /// IGenericCacheRepository
