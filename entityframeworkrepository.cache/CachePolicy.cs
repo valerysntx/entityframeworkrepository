@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
 
+
 namespace entityframeworkrepository.cache
 {
     /// <summary>

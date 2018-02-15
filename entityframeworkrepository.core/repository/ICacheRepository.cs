@@ -1,8 +1,7 @@
-﻿using entityframeworkrepository.cache;
-using entityframeworkrepository.core;
+﻿
 using entityframeworkrepository.core.query;
 
-namespace entityframeworkrepository.core.repository
+namespace entityframeworkrepository.repository.cache
 {
     /// <summary>
     /// ICacheRepository<typeparam name="T"> Entity </typeparam>

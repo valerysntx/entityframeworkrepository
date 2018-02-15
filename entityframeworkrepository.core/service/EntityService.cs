@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+
 using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
+using entityframeworkrepository.repository;
 using entityframeworkrepository.core.unitofwork;
 
 namespace entityframeworkrepository.core.service

@@ -66,6 +66,7 @@
     <Compile Include="Query\Evaluator.cs" />
     <Compile Include="Query\LocalCollectionExpander.cs" />
     <Compile Include="Query\Nominator.cs" />
+    <Compile Include="Query\Printer.cs" />
     <Compile Include="Query\QueryCache.cs" />
     <Compile Include="Query\SubtreeEvaluator.cs" />
     <Compile Include="Query\Utility.cs" />

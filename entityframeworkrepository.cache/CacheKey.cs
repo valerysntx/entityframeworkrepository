@@ -27,12 +27,10 @@ namespace entityframeworkrepository.cache
         /// <param name="tags">The tags for the cache item.</param>
         public CacheKey(string key, IEnumerable<string> tags)
         {
-            if (key == null)
-                throw new ArgumentNullException("key");
             if (tags == null)
-                throw new ArgumentNullException("tags");
+                throw new ArgumentNullException(nameof(tags));
 
-            _key = key;
+            _key = key ?? throw new ArgumentNullException(nameof(key));
 
             var cacheTags = tags.Select(k => new CacheTag(k));
             _tags = new HashSet<ICacheTag>(cacheTags);

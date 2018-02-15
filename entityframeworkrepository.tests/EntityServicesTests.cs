@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Castle.Core.Internal;
 using entityframeworkrepository.cache;
+
 using entityframeworkrepository.core.entity;
-using entityframeworkrepository.core.repository;
 using entityframeworkrepository.core.service;
 using entityframeworkrepository.core.unitofwork;
+
 using entityframeworkrepository.repository;
 using Moq;
 using Newtonsoft.Json;

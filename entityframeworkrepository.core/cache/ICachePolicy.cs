@@ -1,6 +1,6 @@
 ﻿using System;
-// ReSharper disable CheckNamespace
 
+// ReSharper disable CheckNamespace
 namespace entityframeworkrepository.cache
 {
     public interface ICachePolicy
