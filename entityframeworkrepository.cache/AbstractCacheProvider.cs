@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace entityframeworkrepository.cache
 {
@@ -14,5 +15,7 @@ namespace entityframeworkrepository.cache
         public abstract long ClearCache();
         public abstract bool Set(ICacheKey cacheKey, object value, ICachePolicy cachePolicy);
         public abstract object GetOrAdd(ICacheKey cacheKey, Func<ICacheKey, object> valueFactory, ICachePolicy cachePolicy);
+        public abstract Task<object> GetOrAddAsync(ICacheKey cacheKey, Func<ICacheKey, Task<object>> valueFactory, ICachePolicy cachePolicy);
+      
     }
 }

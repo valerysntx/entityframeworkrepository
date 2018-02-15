@@ -10,7 +10,7 @@ namespace entityframeworkrepository.cache
     /// <summary>
     /// A cache provider based on <see cref="MemoryCache"/>.
     /// </summary>
-    public class MemoryCacheProvider : AbstractCacheProvider
+    public class MemoryCacheProvider : AbstractCacheProvider, ICacheProvider
     {
         private const string _tagKey = "global::tag::{0}";
 
@@ -89,7 +89,7 @@ namespace entityframeworkrepository.cache
         /// The value for the key. This will be either the existing value for the key if the key is already in the cache,
         /// or the new value for the key as returned by <paramref name="valueFactory"/> if the key was not in the cache.
         /// </returns>
-        public async Task<object> GetOrAddAsync(ICacheKey cacheKey, Func<ICacheKey, Task<object>> valueFactory, ICachePolicy cachePolicy)
+        public async override Task<object> GetOrAddAsync(ICacheKey cacheKey, Func<ICacheKey, Task<object>> valueFactory, ICachePolicy cachePolicy)
         {
             var key = GetKey(cacheKey);
             var cachedResult = MemoryCache.Default.Get(key);
@@ -225,5 +225,7 @@ namespace entityframeworkrepository.cache
 
             return cache.CreateCacheEntryChangeMonitor(tags);
         }
+
+
     }
 }

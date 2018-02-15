@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>entityframeworkrepository.database.workbench</RootNamespace>
     <AssemblyName>entityframeworkrepository.database.workbench</AssemblyName>
-    <ModelCollation>1058,CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -23,8 +23,22 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultCollation>Ukrainian_CI_AS</DefaultCollation>
+    <DefaultCollation>Latin1_General_100_CI_AS</DefaultCollation>
     <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <GenerateCreateScript>False</GenerateCreateScript>
+    <AutoCreateStatisticsIncremental>True</AutoCreateStatisticsIncremental>
+    <AutoUpdateStatisticsAsynchronously>True</AutoUpdateStatisticsAsynchronously>
+    <AutoShrink>True</AutoShrink>
+    <AutoClose>True</AutoClose>
+    <Recovery>SIMPLE</Recovery>
+    <PageVerify>CHECKSUM</PageVerify>
+    <AllowSnapshotIsolation>True</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>True</ReadCommittedSnapshot>
+    <DelayedDurability>ALLOWED</DelayedDurability>
+    <QueryStoreDesiredState>Off</QueryStoreDesiredState>
+    <QueryStoreCaptureMode>Auto</QueryStoreCaptureMode>
+    <DbScopedConfigOptimizerHotfixes>On</DbScopedConfigOptimizerHotfixes>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
