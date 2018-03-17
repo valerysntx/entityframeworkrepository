@@ -1,6 +1,6 @@
-# entityframeworkrepository
-EntityFramework Caching Repository
+# entityframeworkrepository | [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvalerysntx%2Fentityframeworkrepository.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvalerysntx%2Fentityframeworkrepository?ref=badge_shield)
 
-"caching strategies for entityframework repository pattern" 
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvalerysntx%2Fentityframeworkrepository.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvalerysntx%2Fentityframeworkrepository?ref=badge_large)
+***Caching Strategies for EntityFramework***
+
+ ![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvalerysntx%2Fentityframeworkrepository.svg?type=large)
