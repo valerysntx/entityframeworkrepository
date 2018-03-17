@@ -4,19 +4,15 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Web.Helpers;
 using entityframeworkrepository.repository;
+using entityframeworkrepository.repository.cache;
 
 
 namespace entityframeworkrepository.webapp.Repository
 {
-    public class DictionaryRepository : GenericDataRepository<Dictionary>
+    public class DictionaryRepository : GenericCacheRepository<Dictionary>
     {
         public DictionaryRepository(DbContext context) : base(context)
         {
-        }
-
-        public override IList<Dictionary> GetPagedList(Func<Dictionary, bool> @where, int page = 0, int take = 1000, params Expression<Func<Dictionary, object>>[] navigationProperties)
-        {
-            return base.GetPagedList(@where, page, take, navigationProperties);
         }
     }
 }

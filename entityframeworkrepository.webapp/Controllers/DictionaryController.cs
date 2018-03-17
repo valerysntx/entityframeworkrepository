@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+
 using System.Web.Http;
-using entityframeworkrepository.core.entity;
 using entityframeworkrepository.repository;
 using entityframeworkrepository.repository.cache;
 using entityframeworkrepository.webapp.Repository;
-using Dictionary = entityframeworkrepository.Dictionary;
 
 namespace entityframeworkrepository.webapp.Controllers
 {
@@ -33,6 +29,7 @@ namespace entityframeworkrepository.webapp.Controllers
             _repository = repository;
         }
 
+        [HttpGet]
         // GET: api/Dictionary
         public IEnumerable<Dictionary> Get()
         {
