@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>entityframeworkrepository.cache</id>
+    <version>1.0.0</version>
+    <title>entityframeworkrepository.cache</title>
+    <authors>valery schepaschenko</authors>
+    <owners>valery schepaschenko</owners>
+    <projectUrl>https://github.com/valerysntx/entityframeworkrepository</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>caching strategies with repository pattern for EF</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright(c) 2018, Valery Schepaschenko</copyright>
+    <tags></tags>
+  </metadata>
+</package>
